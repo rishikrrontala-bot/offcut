@@ -8,11 +8,12 @@ export function parseSession(value:unknown):Session {
   const s=value as Session;
   if(s.version!==1||typeof s.photo!=='string'||typeof s.rectified!=='string'||typeof s.target!=='string'||!Array.isArray(s.corners)||!Array.isArray(s.masks)||s.masks.length>8||![6,8].includes(s.grid)||typeof s.subject!=='string')throw new Error('This project format is unsupported.');
   for(const url of [s.photo,s.rectified,s.target]) if(url&&(!/^data:image\/(jpeg|png|webp);base64,[A-Za-z0-9+/=]+$/.test(url)||url.length>32000000))throw new Error('Project contains unsupported image data.');
+  if(s.inputKind!==undefined&&s.inputKind!=='illustration')throw new Error('Project input label is invalid.');
   validateCorners(s.corners);
   const ids=new Set<string>();
   for(const m of s.masks){if(typeof m.id!=='string'||!/^scrap-\d+$/.test(m.id)||ids.has(m.id)||typeof m.name!=='string'||m.name.length>40||typeof m.excluded!=='boolean'||!Array.isArray(m.color)||m.color.length!==3||m.color.some(v=>!Number.isFinite(v)||v<0||v>255))throw new Error('Project material data is invalid.');ids.add(m.id);decodeMask(m.data);}
   if(s.pattern&&(!['heart','flower','bird'].includes(s.pattern.id)||![s.pattern.foreground,s.pattern.background].every(c=>Array.isArray(c)&&c.length===3&&c.every(v=>Number.isFinite(v)&&v>=0&&v<=255))))throw new Error('Project pattern is invalid.');
-  return {version:1,pattern:s.pattern,portraitConfirmed:s.portraitConfirmed===true,photo:s.photo,corners:s.corners,rectified:s.rectified,masks:s.masks,target:s.target,subject:s.subject.slice(0,80),grid:s.grid};
+  return {version:1,inputKind:s.inputKind,pattern:s.pattern,portraitConfirmed:s.portraitConfirmed===true,photo:s.photo,corners:s.corners,rectified:s.rectified,masks:s.masks,target:s.target,subject:s.subject.slice(0,80),grid:s.grid};
 }
 function db():Promise<IDBDatabase>{return new Promise((resolve,reject)=>{const r=indexedDB.open('offcut-local',1);r.onupgradeneeded=()=>r.result.createObjectStore('session');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(new Error('Local saving is unavailable. Download your project to keep it.'));});}
 export async function saveLocal(s:Session){const d=await db();try{await new Promise<void>((resolve,reject)=>{const tx=d.transaction('session','readwrite');tx.objectStore('session').put(s,'current');tx.oncomplete=()=>resolve();tx.onerror=()=>reject(new Error('Local storage is full. Download your project.'));});}finally{d.close();}}

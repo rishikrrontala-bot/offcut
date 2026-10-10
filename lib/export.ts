@@ -14,7 +14,7 @@ export function assertSafePhotoDataUrl(url: string): void {
 }
 
 function pageOpen(title: string): string {
-  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(title)}</title><style>@page{size:A4;margin:10mm}body{margin:0}.page{width:190mm;min-height:277mm;box-sizing:border-box;padding:4mm;page-break-after:always}.page:last-child{page-break-after:auto}h1{font:700 14pt sans-serif;margin:0 0 3mm}p,td,th,li{font:9pt sans-serif}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:1mm 2mm;text-align:left}svg{display:block}</style></head><body>\n`;
+  return `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${esc(title)}</title><style>@page{size:A4;margin:10mm}body{margin:0}.page{width:190mm;min-height:277mm;box-sizing:border-box;padding:4mm;page-break-after:always}.page:last-child{page-break-after:auto}h1{font:700 14pt sans-serif;margin:0 0 3mm}p,td,th,li{font:9pt sans-serif}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:1mm 2mm;text-align:left}svg{display:block}.calibration-row{display:flex;align-items:center;gap:4mm;margin:4mm 0}.calibration-row svg{flex:none}.example-disclaimer{background:#fff3cd;border:1px solid #ffc107;padding:2mm 3mm;margin:0 0 4mm;font:700 9pt sans-serif;color:#664d03}</style></head><body>\n`;
 }
 const pageClose = '</body></html>';
 
@@ -92,14 +92,18 @@ function calibrationPage(): string {
   return `
 <div class="page"><h1>Start here — print calibration</h1>
 <p>Print at 100% actual size. Measure the square below: it must be exactly 20mm per side. If not, adjust printer scaling.</p>
-<svg width="20mm" height="20mm" viewBox="0 0 20 20"><rect x="0" y="0" width="20" height="20" fill="none" stroke="#000" stroke-width="0.2"/></svg>
-<p style="margin-left:24mm;margin-top:-20mm">20mm</p>
+<div class="calibration-row"><svg width="20mm" height="20mm" viewBox="0 0 20 20"><rect x="0" y="0" width="20" height="20" fill="none" stroke="#000" stroke-width="0.2"/></svg><p style="margin:0">20mm</p></div>
 <p>Cmd/Ctrl+P · Actual size 100% · Disable fit-to-page.</p>
 <ol><li>Print this page first at 100%, with fit-to-page disabled.</li><li>Measure the square with a ruler: both sides must be 20 mm. Adjust printer scaling if they differ.</li><li>Print the remaining pages at the same setting. Source maps show positions on your real A4 sheet.</li><li>Cut the numbered 12 mm squares from the photographed paper. Each cutting number belongs to one page.</li><li>Arrange the pieces left to right, top to bottom, following the assembly numbers. Glue them to backing paper.</li></ol><p>Built by Rishik Rontala</p>
 </div>\n`;
 }
 
-export function makePrintPlan(alloc: Allocation, tiles: Tile[], masks: Mask[], revision: number, photo: string): string {
+function insertDisclaimers(html: string): string {
+  const disclaimer = '<div class="example-disclaimer">ILLUSTRATED EXAMPLE — synthetic input. No camera photograph or physical assembly verified.</div>';
+  return html.replace(/<div class="page">/g, '<div class="page">' + disclaimer);
+}
+
+export function makePrintPlan(alloc: Allocation, tiles: Tile[], masks: Mask[], revision: number, photo: string, inputKind?: 'illustration'): string {
   validateAllocation(alloc, tiles, masks, revision);
   assertSafePhotoDataUrl(photo);
   const used = alloc.tileIds.map(id => {
@@ -112,11 +116,12 @@ export function makePrintPlan(alloc: Allocation, tiles: Tile[], masks: Mask[], r
   const expected = alloc.grid === 6 ? 36 : alloc.grid === 8 ? 64 : 0;
   if (used.length !== expected) throw new Error(`Expected ${expected} tiles for grid ${alloc.grid}, got ${used.length}`);
   const defs = `<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><image id="offcut-source-photo" href="${esc(photo)}" x="0" y="0" width="1050" height="1485"/></defs></svg>`;
-  return pageOpen(`Print plan rev ${revision}`) +
+  const plan = pageOpen(`Print plan rev ${revision}`) +
     defs +
     calibrationPage() +
     assemblyPage(alloc, used, photo) +
     sourcePages(alloc, used, photo) +
     idPages(alloc, used) +
     pageClose;
+  return inputKind === 'illustration' ? insertDisclaimers(plan) : plan;
 }
