@@ -29,3 +29,11 @@ Physical proof requires human work: print plans at 100%, measure the calibration
 Record a raw 20–30-second real end-to-end demonstration before expanding features. Later produce the public narrated captioned 2–3-minute video. Automated playback must stay muted.
 
 Public release verified: https://offcut-six.vercel.app . The first generic-framework deployment served a 404; explicit Next.js configuration corrected it before release verification.
+
+## Improvement loop — October 10
+
+Local verification after the GLM-5.2 improvement: 56 unit checks, type checks and production build passed; all five browser journeys passed in 19.5 seconds. The real-model synthetic check now also recovers a removed mask with a fresh positive point, verifies reuse of the same image embedding and preservation of other masks, performs inside/outside-point refinement, restores exact mask arrays through undo, confirms zoomed and numeric physical-coordinate mapping, and checks central square cropping preserves a circular subject’s proportions. The PNG export was decoded and compared with its assigned source colour and order. A separate mocked-transport test verifies cancellation cannot terminate a later worker; it is not model-accuracy evidence. Zero automatic contrast still exposes manual recovery.
+
+The source-page regression verifies each allocated tile appears once in the assembly and once as a cutting instruction, with calibration first and a single embedded photograph. Designed targets and uploaded targets remain labelled separately. Real-photo count remains zero and physical assembly remains unverified.
+
+The GLM-5.2 documentation-only rubric review is in submission/ITERATION-01-REVIEW.md. Its mean is 72/100; it did not inspect images and is an estimate, not official judging. Missing physical proof and public video are substantive gaps.

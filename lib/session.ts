@@ -11,7 +11,8 @@ export function parseSession(value:unknown):Session {
   validateCorners(s.corners);
   const ids=new Set<string>();
   for(const m of s.masks){if(typeof m.id!=='string'||!/^scrap-\d+$/.test(m.id)||ids.has(m.id)||typeof m.name!=='string'||m.name.length>40||typeof m.excluded!=='boolean'||!Array.isArray(m.color)||m.color.length!==3||m.color.some(v=>!Number.isFinite(v)||v<0||v>255))throw new Error('Project material data is invalid.');ids.add(m.id);decodeMask(m.data);}
-  return {version:1,portraitConfirmed:s.portraitConfirmed===true,photo:s.photo,corners:s.corners,rectified:s.rectified,masks:s.masks,target:s.target,subject:s.subject.slice(0,80),grid:s.grid};
+  if(s.pattern&&(!['heart','flower','bird'].includes(s.pattern.id)||![s.pattern.foreground,s.pattern.background].every(c=>Array.isArray(c)&&c.length===3&&c.every(v=>Number.isFinite(v)&&v>=0&&v<=255))))throw new Error('Project pattern is invalid.');
+  return {version:1,pattern:s.pattern,portraitConfirmed:s.portraitConfirmed===true,photo:s.photo,corners:s.corners,rectified:s.rectified,masks:s.masks,target:s.target,subject:s.subject.slice(0,80),grid:s.grid};
 }
 function db():Promise<IDBDatabase>{return new Promise((resolve,reject)=>{const r=indexedDB.open('offcut-local',1);r.onupgradeneeded=()=>r.result.createObjectStore('session');r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(new Error('Local saving is unavailable. Download your project to keep it.'));});}
 export async function saveLocal(s:Session){const d=await db();try{await new Promise<void>((resolve,reject)=>{const tx=d.transaction('session','readwrite');tx.objectStore('session').put(s,'current');tx.oncomplete=()=>resolve();tx.onerror=()=>reject(new Error('Local storage is full. Download your project.'));});}finally{d.close();}}

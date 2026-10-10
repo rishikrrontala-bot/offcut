@@ -1,5 +1,5 @@
-import { SHEET, type Point, type RGB } from './types';
-import { validateCorners, solveHomography, invert3 } from './engine';
+import { SHEET, type Point, type RGB, type Allocation, type Tile, type Mask } from './types';
+import { validateCorners, solveHomography, invert3, validateAllocation } from './engine';
 
 export async function readPhoto(file: File): Promise<string> {
   if (!['image/jpeg','image/png','image/webp'].includes(file.type)) throw new Error('Choose a JPEG, PNG or WebP photograph. SVG and other files are not supported.');
@@ -71,7 +71,19 @@ export function proposeSeeds(rgba: Uint8ClampedArray): Point[] {
 }
 export async function targetColors(url:string, grid:number):Promise<RGB[]> {
   const photo=await imageCanvas(url),c=document.createElement('canvas');c.width=grid;c.height=grid;
-  const ctx=c.getContext('2d')!;ctx.drawImage(photo,0,0,grid,grid);const d=ctx.getImageData(0,0,grid,grid).data;
+  const ctx=c.getContext('2d')!;const side=Math.min(photo.width,photo.height);ctx.drawImage(photo,(photo.width-side)/2,(photo.height-side)/2,side,side,0,0,grid,grid);const d=ctx.getImageData(0,0,grid,grid).data;
   return Array.from({length:grid*grid},(_,i)=>[d[i*4],d[i*4+1],d[i*4+2]] as RGB);
 }
 export function download(text:string,name:string,type:string) { const url=URL.createObjectURL(new Blob([text],{type}));const a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000); }
+
+export function cellsImage(cells:RGB[],grid:number):string {
+ if(cells.length!==grid*grid)throw new Error('Target cells do not match the grid.');
+ const canvas=document.createElement('canvas');canvas.width=grid;canvas.height=grid;const ctx=canvas.getContext('2d')!;
+ cells.forEach((color,i)=>{ctx.fillStyle=`rgb(${color.join(',')})`;ctx.fillRect(i%grid,Math.floor(i/grid),1,1);});return canvas.toDataURL('image/png');
+}
+export async function artworkCanvas(allocation:Allocation,tiles:Tile[],masks:Mask[],revision:number,photo:string):Promise<HTMLCanvasElement>{
+ validateAllocation(allocation,tiles,masks,revision);const source=await imageCanvas(photo);
+ if(source.width!==SHEET.width||source.height!==SHEET.height)throw new Error('Source photograph dimensions are invalid.');
+ const canvas=document.createElement('canvas'),cell=120;canvas.width=canvas.height=allocation.grid*cell;const ctx=canvas.getContext('2d')!;
+ const byId=new Map(tiles.map(t=>[t.id,t]));allocation.tileIds.forEach((id,i)=>{const t=byId.get(id)!;ctx.drawImage(source,t.x,t.y,t.size,t.size,i%allocation.grid*cell,Math.floor(i/allocation.grid)*cell,cell,cell);});return canvas;
+}

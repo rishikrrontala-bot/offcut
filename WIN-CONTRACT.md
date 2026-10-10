@@ -8,7 +8,7 @@ User: a student or art teacher with irregular leftover coloured paper. Outcome: 
 
 Decisive proof: newly captured paper photograph -> reviewed pretrained segmentation and perspective correction -> unique cuttable square inventory -> capacity-aware allocation -> actual photographic textures -> calibrated cutting and assembly sheets -> human-cut physical result. Every output cell must map to exactly one source tile.
 
-| Equally weighted criterion | Visible evidence required | Current status |
+| Criterion (equal weighting is an estimate, not published weights) | Visible evidence required | Current status |
 |---|---|---|
 | Technical execution | Learned masks, corner correction, whole-mask tile containment, unique assignment and actual-size export checks | software checks passed; real-photo proof pending |
 | Innovation | Click an artwork cell to reveal its exact physical source; remove scarce paper and visibly recompute | software checks passed; real-photo proof pending |

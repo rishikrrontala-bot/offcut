@@ -1,6 +1,6 @@
 # OFFCUT — paper studio
 
-Design intent prepared during the event; no interface exists yet.
+The implemented interface uses a quiet paper-studio direction, prepared and built during the event.
 
 A quiet working table where the photograph and achievable artwork are the primary objects. Warm off-white #F4F1EA, ink #100F0D, muted rule #D7D0C4, restrained terra #DA532C for selected controls. Photographed paper supplies the colour. System grotesk for actions and explanatory copy, Instrument Serif only where a display voice is useful, monospaced micro-labels for measured sizes and source IDs. Keep type readable and labels explicit.
 
@@ -16,4 +16,4 @@ Footer and metadata credit: Built by Rishik Rontala. The visual direction is ins
 
 ## Built-result review
 
-Desktop 1440 px and phone 390 px screenshots were inspected. Paper/ink/terra, self-hosted Instrument Serif and DM Sans, hairline separators and the controls-beside-material table hold the selected direction. Independent finish review found keyboard uploads, review gating and async layout consistency issues; all were corrected and browser checks rerun successfully. Phone layout has no horizontal overflow. Optional contextual jump links remain a non-blocking refinement; physical proof and submission take priority. One source detector pass reported no findings. Synthetic screenshots verify interface behavior, not camera-photo accuracy or physical assembly.
+Desktop 1440 px and phone 390 px screenshots were inspected. Paper/ink/terra, self-hosted Instrument Serif and DM Sans, hairline separators and the controls-beside-material table hold the selected direction. Independent finish review found keyboard uploads, review gating and async layout consistency issues; all were corrected and browser checks rerun successfully. Phone layout has no horizontal overflow. Contextual section jumps, a labelled capture illustration, zoom and clean artwork export now support the workflow; physical proof and submission take priority. One source detector pass reported no findings. Synthetic screenshots verify interface behavior, not camera-photo accuracy or physical assembly.

@@ -8,6 +8,6 @@ OFFCUT was built by Rishik Rontala. Application source is MIT licensed; dependen
 - Next.js (MIT), React (MIT), Tailwind CSS (MIT), Vitest (MIT), Playwright (Apache-2.0); exact dependency versions are in package-lock.json.
 - Instrument Serif and DM Sans via Fontsource, SIL Open Font License. Self-hosted font packages retain license files.
 - Comparative research: Sozofix’s photo-to-reuse approach informed problem positioning; no competitor code or assets were copied. OFFCUT’s unique source inventory and physical mapping are implemented here.
-- Development assistance: Codex and user-authorized Featherless GLM-5.3/GLM-5.3-Flash API coding requests. Root reviewed all proposed code. Models did not capture evaluation photographs or assemble physical paper.
+- Development assistance: Codex and user-authorized Featherless GLM-5.3/GLM-5.3-Flash and GLM-5.2 API coding/review requests. GLM-5.2 contributed designed targets, real SAM point refinement, material accounting and keyboard prompt entry during improvement iterations. Root reviewed all proposed code. Models did not capture evaluation photographs or assemble physical paper.
 
 User-provided photographs and target images remain their owners’ materials. Synthetic test drawings are clearly identified as engineering fixtures.
