@@ -1,0 +1,12 @@
+.next/
+node_modules/
+.env*
+!.env.example
+*.tsbuildinfo
+playwright-report/
+test-results/
+artifacts/
+.impeccable/review/
+.vercel/
+.impeccable/
+public/vendor/opencv.js

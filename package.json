@@ -1,0 +1,32 @@
+{
+  "name": "offcut",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node scripts/prepare-vendor.mjs && next dev --webpack -p 3000",
+    "build": "node scripts/prepare-vendor.mjs && next build --webpack",
+    "start": "next start -p 3000",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test"
+  },
+  "dependencies": {
+    "@fontsource/dm-sans": "latest",
+    "@fontsource/instrument-serif": "latest",
+    "@huggingface/transformers": "4.3.1",
+    "@tailwindcss/postcss": "^4.1.0",
+    "@techstark/opencv-js": "4.11.0-release.1",
+    "next": "16.4.0",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "tailwindcss": "^4.1.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.56.0",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.9.0",
+    "vitest": "4.1.11"
+  }
+}

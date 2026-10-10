@@ -1,0 +1,11 @@
+import {it,expect} from 'vitest';
+import {makePrintPlan} from '../lib/export';
+import {extractTiles,allocate} from '../lib/engine';
+import {SHEET,type Mask} from '../lib/types';
+const photo='data:image/png;base64,AAAA';
+function fixture(grid=6){const m:Mask={id:'scrap-1',name:'Paper',color:[10,20,30],excluded:false,width:SHEET.width,height:SHEET.height,data:new Uint8Array(SHEET.width*SHEET.height).fill(1)};const data=new Uint8ClampedArray(m.data.length*4);const tiles=extractTiles([m],data,1);return {masks:[m],tiles,allocation:allocate(tiles,Array(grid*grid).fill([0,0,0]),grid,1)};}
+it('uses actual source crop viewBoxes in numbered assembly and cutting pages',()=>{const f=fixture(),html=makePrintPlan(f.allocation,f.tiles,f.masks,1,photo);expect((html.match(/<!doctype html>/g)||[]).length).toBe(1);for(const [i,id] of f.allocation.tileIds.entries()){const t=f.tiles.find(t=>t.id===id)!;expect(html).toContain(`viewBox="${t.x} ${t.y} ${t.size} ${t.size}"`);expect(html).toContain(`data-tile-id="${id}" data-source-id="${i+1}"`);}expect(html).not.toContain('onclick=');});
+it('preserves physical assembly and source scale with a genuine20mm calibration SVG',()=>{for(const grid of [6,8]){const f=fixture(grid),html=makePrintPlan(f.allocation,f.tiles,f.masks,1,photo);expect(html).toContain(`width="${grid*12}mm" height="${grid*12}mm" viewBox="0 0 ${grid*12} ${grid*12}"`);expect(html).toContain('width="20mm" height="20mm" viewBox="0 0 20 20"');expect(html).toContain('width="20" height="20"');expect(html).toContain('width="120mm" height="168.5mm" viewBox="0 0 600 842.5"');expect(html).toContain('@page{size:A4;margin:10mm}');}});
+it('refuses stale correspondence and active-image formats before download',()=>{const f=fixture();expect(()=>makePrintPlan(f.allocation,f.tiles,f.masks,2,photo)).toThrow();expect(()=>makePrintPlan(f.allocation,f.tiles,f.masks,1,'data:image/svg+xml;base64,AAAA')).toThrow();});
+
+it('embeds a large photo only once regardless of grid size',()=>{const f=fixture(8),large='data:image/png;base64,'+'A'.repeat(1000000),html=makePrintPlan(f.allocation,f.tiles,f.masks,1,large);expect(html.split(large).length-1).toBe(1);expect(html.length).toBeLessThan(1100000);expect(html).toContain('<use href="#offcut-source-photo"/>');});
