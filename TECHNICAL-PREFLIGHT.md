@@ -6,7 +6,7 @@ The OpenCV UMD runtime is copied from the pinned package during explicit build/d
 
 SlimSAM runs WASM/q8 in a browser worker. The photograph is encoded once per detection, then separate point prompt groups use the image embeddings for decoder output. Three candidate masks per group are postprocessed to full sheet dimensions; area/IoU filtering selects proposals. Manual correction does not rerun the model. All masks require explicit review. Contrast only supplies seed points, not learned mask results. The generic mask-generation pipeline is not used.
 
-The completed browser check produced 4 masks and 104 squares from a clearly labelled synthetic engineering image in a measured 7.9-second model stage. This is neither a camera-photo benchmark nor an accuracy claim. Real cold/warm download, encoder/decoder and correction timing still require the first camera photograph.
+The completed browser check produced 4 masks and 104 squares from a clearly labelled synthetic engineering image in a measured 7.7-second model stage. This is neither a camera-photo benchmark nor an accuracy claim. Real cold/warm download, encoder/decoder and correction timing still require the first camera photograph.
 
 Input photo validation, finite A4 corner geometry, fully contained tiles with a 1 mm margin, unique allocation and stale-revision rejection are verified. Next's native ONNX/Sharp server modules are excluded from browser bundles; Webpack is explicit.
 

@@ -4,6 +4,8 @@ Make something from what’s left. Built by Rishik Rontala for Banana Hacks 2026
 
 OFFCUT turns a photograph of separated coloured paper scraps into a finite material inventory, an achievable photographic collage and actual-size cutting/assembly plans. Every output square uses one unique source square; backgrounds consume material too. It never recolours or duplicates photographed paper.
 
+Live app: https://offcut-six.vercel.app · Public source: https://github.com/rishikrrontala-bot/offcut
+
 ## Use it
 
 1. Photograph 4–8 flat, opaque, separated scraps on a contrasting portrait A4 sheet. Keep all four reference-sheet corners visible.

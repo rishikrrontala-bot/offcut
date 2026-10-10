@@ -10,3 +10,4 @@ artifacts/
 .vercel/
 .impeccable/
 public/vendor/opencv.js
+.vercel
