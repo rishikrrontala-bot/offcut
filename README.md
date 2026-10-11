@@ -50,7 +50,7 @@ Latest unit run: **59 passing tests in 1.90 s**; production build and type check
 
 The final **2:22** narrated/captioned engineering recording is captured: 142.16 s, 1280 × 720, eleven scenes, H.264 video and AAC narration. It uses illustrated input with real OpenCV/SlimSAM and shows unique allocation, source tracing, actual removal/recompute and the exported plan. Full-grid framing was visually checked. The final media files are publicly served under `public/demo/`; the [walkthrough](https://offcut-six.vercel.app/walkthrough), metadata, transcript and phone layout passed public browser checks. The deployed MP4 matches the local file byte-for-byte.
 
-**No real camera photographs have been evaluated, no physical assembly is verified, and no human usability result is claimed.** The illustrated example and synthetic fixtures are engineering evidence, not real-world accuracy measurements. Public YouTube publication and Devpost submission remain unverified. Current outcomes live in EVALUATION.md and BUILD-STATUS.md; the preserved APP-BRIEF.md is the original brief/event record.
+**No real camera photographs have been evaluated, no physical assembly is verified, and no human usability result is claimed.** The illustrated example and synthetic fixtures are engineering evidence, not real-world accuracy measurements. YouTube URL supplied by Rishik: https://youtu.be/ekFjI1mhMRA; public playback and Devpost submission remain unverified. Current outcomes live in EVALUATION.md and BUILD-STATUS.md; the preserved APP-BRIEF.md is the original brief/event record.
 
 ## Credits and submission
 

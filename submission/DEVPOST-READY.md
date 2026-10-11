@@ -16,7 +16,7 @@ The complete upload bundle is `../artifacts/devpost-ready/offcut-devpost-upload.
 | Source code | https://github.com/rishikrrontala-bot/offcut |
 | Engineering walkthrough | https://offcut-six.vercel.app/walkthrough |
 | Downloadable video | https://offcut-six.vercel.app/demo/engineering-walkthrough.mp4 |
-| YouTube video | Required public YouTube URL — not yet supplied or verified. Do not paste the MP4 into a field that specifically requires YouTube. |
+| YouTube video | https://youtu.be/ekFjI1mhMRA — supplied by Rishik on October 11; logged-out playback and Public visibility not independently verified. |
 | Team lead / builder | Rishik Rontala — solo designer and developer |
 | Other team members | Not applicable |
 | Intended award | Overall award and Best Creative Tool, where the portal offers these options. |
@@ -37,11 +37,11 @@ All five final images below were visually inspected. They come from the accepted
 
 Use the collage as the cover, then detection, tracing, removal/recompute and the plan. Add camera/assembly images only after genuine proof exists; do not present a future physical result as completed work.
 
-## Upload the prepared video
+## YouTube demo
 
 The accepted final file is `../artifacts/walkthrough/engineering-walkthrough.mp4` (1280×720, 142.16 seconds / 2:22, eleven scenes, narrated with visible captions). It demonstrates real inference, unique source allocation, source tracing and actual material exclusion/recompute on an illustrated input. It does not show a human reviewing boundaries or a physical assembly.
 
-In your own YouTube browser session, upload this file and set visibility to **Public**, as required by the brief. Use:
+Rishik supplied the uploaded video URL: **https://youtu.be/ekFjI1mhMRA**. The verification tool could not fetch either the short link or watch page. Confirm visibility is **Public** and the complete video plays in a private browser window without signing in. Recommended metadata:
 
 - Title: **OFFCUT — Make something from what’s left | Banana Hacks 2026**
 - Description: **Built solo by Rishik Rontala. OFFCUT turns a finite paper inventory into a uniquely mapped collage and numbered cutting/assembly plans. This recording uses an illustrated input processed by actual browser-local OpenCV and pretrained SlimSAM; real-camera evaluation and physical assembly are unverified. Try it: https://offcut-six.vercel.app/ · Source: https://github.com/rishikrrontala-bot/offcut**
@@ -56,7 +56,7 @@ Upload `engineering-walkthrough.srt` as the English subtitle track; it matches t
 4. Complete all required eligibility and attribution fields truthfully. The app uses local pretrained segmentation; Featherless supplied development assistance, not image inference for users.
 5. Submit before the protected time. Save the confirmation screen and project URL. Verify the entry shows **submitted**, not draft, and its public links work without login.
 
-**Access limitation:** automated browser access to YouTube and Devpost was rejected by the browser’s administrative security check; the Devpost connector returned an internal error. These actions require your own browser session. No attempt to bypass that restriction is authorized here, and no publication or submission is claimed.
+**Access limitation:** automated browser access to YouTube and Devpost was rejected by the browser’s administrative security check; the Devpost connector returned an internal error. These actions require your own browser session. No attempt to bypass that restriction is authorized here, and no independent verification of YouTube visibility or Devpost submission is claimed.
 
 ## Resources and attribution
 
@@ -77,7 +77,7 @@ Source/license references:
 - 59 unit tests (1.90 s), type check and production build: passed on October 11.
 - Latest local release verification: all nine browser checks passed in 31.7 s.
 - Updated public verification: all nine browser checks passed in 35.4 s.
-- Final video captured and visually checked: yes, 142.16 seconds / 2:22; a public YouTube upload remains pending.
+- Final video captured and visually checked: yes, 142.16 seconds / 2:22; the YouTube link has been supplied, with Public visibility and logged-out playback still unverified.
 - Current /walkthrough and public video: verified on READY deployment `dpl_8v5oCR5nE4rtkLxUWkoKNeHoXurV`, source `949d352`, alias `offcut-six.vercel.app`. The real 142.16 s MP4 returned HTTP 200 and matches the checked local file exactly.
 - Real camera inputs evaluated: zero. Physical assembly and human usability testing: unverified.
 - Devpost entry: not submitted or verified.

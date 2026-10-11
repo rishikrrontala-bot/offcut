@@ -17,7 +17,7 @@ Public app: https://offcut-six.vercel.app/ . Public source: https://github.com/r
 - Ten new supported camera photographs and real pipeline results: **zero evaluated**.
 - Ruler-verified print/cut/assembly and photographed result: **unverified**.
 - Human usability/self-test result: **not performed**.
-- PUBLIC YouTube demo between two and three minutes: **not uploaded or verified**.
+- YouTube URL supplied by Rishik: https://youtu.be/ekFjI1mhMRA. The local accepted video is 2:22; uploaded-version duration, PUBLIC visibility and logged-out playback are **not independently verified**.
 - Devpost entry, at most 500 words: **prepared, not submitted or verified**.
 - Opening-ceremony challenge constraint: **unverified**; Rishik instructed continuation under the published Image AI theme.
 
