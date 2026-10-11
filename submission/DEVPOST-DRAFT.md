@@ -1,28 +1,24 @@
-DRAFT — NOT SUBMITTED
-
-# OFFCUT: make something from what’s left
+# OFFCUT — Make something from what’s left.
 
 ## Inspiration
-Leftover coloured paper is difficult to plan around: each scrap has a different shape, colour and capacity. OFFCUT starts with the material a person actually has, then makes a small collage they can inspect and assemble. Built solo by Rishik Rontala for Banana Hacks 2026.
+The hardest part of using leftover coloured paper is planning around what remains. A design can ask for colours or pieces you simply do not have. OFFCUT reverses that process: the available material sets the creative constraint. I built it solo for students, art clubs and teachers making small paper mosaics.
 
 ## What it does
-Photograph 4–8 separated scraps on a contrasting portrait A4 sheet. Confirm the sheet’s four corners and short top edge. OpenCV corrects perspective; a real pretrained SlimSAM model proposes scrap masks in the browser. Review the boundaries and correct them with a brush or keyboard rectangle tool.
+Photograph 4–8 separated scraps on a contrasting A4 sheet. Confirm the four corners; OpenCV corrects perspective and establishes scale. A real pretrained SlimSAM model proposes paper boundaries in the browser. Inspect them, refine missed areas or erase mistakes, and explicitly confirm review before making a collage.
 
-Choose a designed Heart/Flower/Bird pattern in the photographed palette or upload a simple target image. OFFCUT finds 12 mm squares whose entire footprint and 1 mm margin fit inside reviewed paper. It assigns unique source pieces to a 6×6 or 8×8 layout. Background cells need real paper too; insufficient capacity blocks output.
+Choose a Heart, Flower or Bird pattern in your paper’s palette, or upload a simple target. OFFCUT extracts 12 mm squares whose complete footprint plus a 1 mm margin fits inside reviewed paper. It assigns each target cell one unique source square. Backgrounds consume paper too; insufficient material produces an actionable shortage instead of invented pieces.
 
-The achievable artwork uses photographic crops without recolouring or reusing a source square. Click a cell to reveal its exact location in the original photograph. Exclude a scarce colour and an already-reviewed collage recomputes from what remains.
+The preview uses original image crops without recolouring. Click a collage cell to find its precise source in the original photograph. Remove a scarce scrap and recompute from the remaining inventory. Download numbered cutting and assembly plans, check the 20 mm print-calibration square, or save the project locally.
 
-Download numbered actual-size cutting and assembly plans. A 20 mm calibration square lets the maker check print scale before cutting 12 mm pieces. Save locally or download a portable project.
+## How I built it
+Next.js, React and Tailwind create a quiet paper-and-ink studio. OpenCV supplies perspective geometry; SlimSAM through Transformers.js supplies learned segmentation. Pure TypeScript checks containment and performs capacity-aware Hungarian matching in CIELAB colour space. Photos and target images stay in the browser; model weights download separately.
 
-## How it was built
-Next.js, React and Tailwind form the studio. OpenCV supplies calibrated geometry; SlimSAM via Transformers.js supplies learned segmentation. Pure TypeScript validates containment and performs a Hungarian assignment using CIELAB colour distance. Photos stay browser-local; model weights download separately.
+I considered generated targets, but chose the explicit target-upload fallback for the intended student audience. Designed patterns are labelled templates, not generated images. Image AI remains essential: it turns irregular scraps into an editable material inventory.
 
-Codex coordinated implementation and verification. Featherless GLM-5.3-Flash supplied reviewed export repairs and draft assistance; GLM-5.3 attempts returned incomplete output. GLM-5.2 supplied reviewed targets, SAM refinement, material accounting and keyboard prompt entry. Credit goes to OpenCV, Transformers.js, SlimSAM, Meta SAM and Xenova for the pretrained tools.
+## Challenges, results and what I learned
+Keeping physical scale and source identity consistent through segmentation, allocation, restoration and export was the main engineering challenge. The build passes 59 unit tests and nine local browser checks, plus type checking and production compilation. Its captioned, narrated 2:22 engineering recording shows real pretrained inference, unique allocation, source tracing and material removal/recompute on a clearly labelled illustration, with no hardcoded masks.
 
-## Challenges and evidence
-Physical scale, unique source correspondence and model review had to survive the entire workflow. Fifty-six unit tests and five local browser journeys pass, including actual pretrained inference on a synthetic engineering image: four masks and 104 cuttable squares. This does not establish real-photo accuracy. Image generation is unavailable; target upload is the explicit fallback.
+I learned that a convincing preview is only half the problem: trustworthy creative tools must preserve the path back to the material. Ten real-camera evaluations and one ruler-checked physical assembly remain unverified. No waste-reduction or physical-success claim is made. Those measurements are the next validation step.
 
-Ten newly captured photographs, a ruler-verified physical assembly and the public narrated demo remain outstanding. No waste-saving or physical-result claim is made before those checks.
-
-Public source: https://github.com/rishikrrontala-bot/offcut
-Live app: https://offcut-six.vercel.app
+## Credits
+Built by Rishik Rontala. OpenCV, Transformers.js, Xenova’s SlimSAM weights, SlimSAM/Meta SAM, Next.js, React, Tailwind, Vitest, Playwright and Fontsource support the build. Codex and Featherless GLM models assisted development and review, with native Codex completing final improvements after broader model authorization. No event-specific model training was performed.

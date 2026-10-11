@@ -1,21 +1,31 @@
 # OFFCUT — win contract
 
-Prepared during the event. Ceremony constraints remain unverified; the user instructed continuation under the published Image AI theme. This contract distinguishes software evidence from missing physical proof.
+Banana Hacks 2026: https://banana-hacks-1111.devpost.com/ . Solo student entrant **Rishik Rontala**. Intended awards: overall and Best Creative Tool. Protect **October 11, 2026, 9:59 p.m. EDT** for submission; conservative final cutoff **11:59 p.m. EDT**.
 
-Banana Hacks 2026: https://banana-hacks-1111.devpost.com/ . Rishik Rontala, solo student entrant. Target overall award and Best Creative Tool. Protect October 11 at 9:59 p.m. EDT for submission; conservative final cutoff 11:59 p.m. EDT. Required: public GitHub, working demo, PUBLIC YouTube video 2–3 minutes, <=500-word Devpost entry, ideation/design/resources/result and attribution.
+Required entry: public source, working app, PUBLIC YouTube demo of two to three minutes, at most 500 words describing inspiration/design/resources/result, and truthful attribution. Ceremony-specific constraints remain unverified; Rishik authorized continuation under the published Image AI theme.
 
-User: a student or art teacher with irregular leftover coloured paper. Outcome: photograph scraps and receive an achievable collage plus precise plans for making it. Nearest comparable entry: [Sozofix, Nano Banana 2025](https://www.kaggle.com/competitions/banana/writeups/sozofix-ai-diy-assistant), photo-to-reuse guidance. OFFCUT's intended difference is a finite inventory with unique source assignments and calibrated physical cutting locations.
+## User, problem and difference
 
-Decisive proof: newly captured paper photograph -> reviewed pretrained segmentation and perspective correction -> unique cuttable square inventory -> capacity-aware allocation -> actual photographic textures -> calibrated cutting and assembly sheets -> human-cut physical result. Every output cell must map to exactly one source tile.
+Students, art clubs and teachers have irregular coloured scraps but cannot easily plan an artwork around their finite material. OFFCUT turns those scraps into an inspectable inventory and uniquely mapped cutting/assembly plan. Compared with [Sozofix’s photo-to-reuse guidance](https://www.kaggle.com/competitions/banana/writeups/sozofix-ai-diy-assistant), the intended distinction is a finite source inventory, one-use pieces and calibrated physical locations. No competitor code or assets were reused.
 
-| Criterion (equal weighting is an estimate, not published weights) | Visible evidence required | Current status |
+## Decisive proof
+
+New camera photograph → reviewed pretrained segmentation and calibrated geometry → unique cuttable inventory → constrained allocation using actual image crops → trace each piece to its source → remove scarce paper and recompute → actual-size numbered plan → human-cut physical result.
+
+The software portion is demonstrated on illustrated engineering input. The camera and physical portion remains missing and cannot be manufactured by synthetic testing.
+
+| Judging criterion | Claim and evidence | Current status |
 |---|---|---|
-| Technical execution | Learned masks, corner correction, whole-mask tile containment, unique assignment and actual-size export checks | software checks passed; real-photo proof pending |
-| Innovation | Click an artwork cell to reveal its exact physical source; remove scarce paper and visibly recompute | software checks passed; real-photo proof pending |
-| Image AI | Real pretrained segmentation; generation only if actually available and compatible, otherwise labelled target upload | software checks passed; real-photo proof pending |
-| Impact/usefulness | Printed calibration measurement and photographed physical assembly from exported plans | human evidence missing |
-| Design/presentation/demo | Quiet studio, uninterrupted real journey, public narrated captioned 2:30 video | interface verified; real narrated video missing |
+| Technical Execution and Difficulty | Real SlimSAM/OpenCV, whole-mask containment, unique Hungarian assignment, source/export correspondence, recovery and scale checks | Measured in 59 unit tests (1.90 s) and nine local browser checks; updated public run pending; real-photo accuracy missing |
+| Innovation and Creativity | Artwork is constrained by finite material; each cell traces to one unique source; exclusion changes the feasible inventory and output | Shown in software and the captured 2:22 narrated exclusion/recompute recording |
+| Use of the Image AI Theme | Learned segmentation converts irregular visual input into editable material regions; target upload is the explicit generation fallback | Actual pretrained inference shown; no generated-image claim |
+| Impact and Usefulness | A maker can follow numbered, calibrated plans using their own scraps | Plans exported and software checked; ruler-verified physical assembly and human usability proof missing |
+| Design, Presentation and Demo | Quiet paper studio, inspectable previews, captions/narration, public app and concise entry | Studio checked including mobile; corrected eleven-scene video captured and final gallery visually inspected; public walkthrough verification pending; YouTube/Devpost unverified |
 
-Riskiest unknowns: ceremony constraints, browser mask performance on real paper, generated target availability, and physical proof. The authorized generation fallback is target upload while preserving learned segmentation, geometry, allocation and export. Cut decorative motion and 8×8 polish before anything in the verified 6×6 path. Do not invent evaluation photographs, material, model output or physical assembly.
+No official weights have been verified. Equal-weight review means are estimates, not event scores.
 
-Demo opening: real scraps beside the final physical collage, then show exactly how one numbered square traveled from source to artwork. Budget backward from submission, freeze optional features before Sunday afternoon, and verify all public links logged out.
+## Completion priorities
+
+Publish the checked final recording/media, then rerun all nine public browser checks. Keep current evidence/attribution synchronized. Obtain supported real photographs and one measured assembly when Rishik supplies materials. Publish the required public YouTube URL and submit the honest entry before the protected time.
+
+Do not add accounts, marketplaces, custom training, arbitrary nesting or secondary creative pipelines. Do not let optional polish displace submission. Missing physical evidence lowers the usefulness claim; a polished illustration must remain labelled.

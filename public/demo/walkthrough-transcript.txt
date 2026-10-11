@@ -1,0 +1,23 @@
+Illustrated input · real segmentation · physical result unverified
+
+OFFCUT turns leftover paper into a collage you can actually make. This is an engineering demonstration using the built-in illustrated example.
+
+We load the illustrated example, not a camera photo. The same real image AI will segment it in the browser.
+
+Confirming the A4 corners runs real local segmentation. Four scraps are detected automatically.
+
+The material map shows the learned masks on the corrected sheet. Every boundary must be reviewed before cutting.
+
+OFFCUT requires a mandatory human boundary review before cutting. Checking the review box is only a recording step and is not evidence that a human inspected each boundary.
+
+Choosing Heart and making the collage assigns thirty-six unique crops from the illustrated input.
+
+Clicking a piece traces it back to its source on the original sheet. No piece is invented or reused.
+
+Hiding the piece numbers shows the clean mosaic. Each square is a real crop, not a recolour.
+
+Remove one paper and the collage recomputes from what remains. Every tile still comes from a unique surviving source.
+
+The cutting and assembly plan downloads with a twenty-millimetre calibration square. Physical cutting remains unverified.
+
+Built by Rishik Rontala. Physical cutting and real success are still unverified.

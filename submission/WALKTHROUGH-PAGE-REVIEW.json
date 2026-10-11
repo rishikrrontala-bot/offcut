@@ -1,0 +1,11 @@
+{
+  "verdict": "approve",
+  "blockers": [],
+  "nonblocking": [
+    "The 'Watch the illustrated walkthrough' link only renders in the studio's empty (no-photo) state, which is acceptable since the test opens a clean browser, but a persistent header link would improve discoverability after a photo is loaded.",
+    "The video element declares width/height attributes of 1280x720; CSS maxWidth 100% handles responsive scaling, but consider aspect-ratio or height auto to avoid layout shift on slow connections."
+  ],
+  "required_commands": [
+    "npx playwright test tests/e2e/walkthrough.spec.ts"
+  ]
+}

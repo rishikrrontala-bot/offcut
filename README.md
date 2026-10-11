@@ -1,21 +1,22 @@
 # OFFCUT
 
-Make something from what’s left. Built by Rishik Rontala for Banana Hacks 2026.
+**Make something from what’s left.** Built solo by Rishik Rontala for Banana Hacks 2026.
 
-OFFCUT turns a photograph of separated coloured paper scraps into a finite material inventory, an achievable photographic collage and actual-size cutting/assembly plans. Every output square uses one unique source square; backgrounds consume material too. It never recolours or duplicates photographed paper.
+OFFCUT turns a photograph of separated coloured scraps into a finite material inventory, an achievable collage made from original image crops, and numbered actual-size cutting/assembly plans. Every artwork cell uses one unique source square. Backgrounds need real paper too; the app never recolours or duplicates a source piece.
 
-Live app: https://offcut-six.vercel.app · Public source: https://github.com/rishikrrontala-bot/offcut
+[Open the studio](https://offcut-six.vercel.app/) · [Public source](https://github.com/rishikrrontala-bot/offcut)
 
 ## Use it
 
-1. Photograph 4–8 flat, opaque, separated scraps on a contrasting portrait A4 sheet. Keep all four reference-sheet corners visible.
-2. Upload a JPEG/PNG/WebP photograph, position the four corner handles (or use the numeric fields), and confirm the short top edge and corners.
-3. OpenCV corrects perspective. Browser-local pretrained SlimSAM predicts masks using contrast-proposed point prompts. Inspect and correct every boundary with the brush or keyboard rectangle editor, then explicitly confirm review. Missed paper and difficult boundaries can be recovered through positive/negative SAM points; zoom, five-step undo and numeric point entry support precise corrections.
-4. Choose a designed Heart/Flower/Bird pattern in your paper’s palette, or upload a simple target image; select a 6×6 or 8×8 grid. Uploaded targets use an aspect-preserving central square crop; the sampled target is visible beside the achievable result. Image generation is unavailable; the subject field is a note, not an AI prompt.
-5. Make the collage. Click any piece to locate its exact region in the original photograph. Excluding a paper recomputes an already-reviewed collage or reports insufficient material.
-6. Download the HTML print plan, open it and print at **100% actual size**, with fit-to-page disabled. Measure the 20 mm calibration square before cutting. Calibration is first. Source viewports overlap for context; every Source ID has exactly one primary cutting page, identified in the mapping table. Cut from the real paper, not the printout. A separate clean PNG export preserves the original photographic textures.
+1. Photograph 4–8 flat, opaque, separated scraps on a contrasting portrait A4 sheet (210 × 297 mm). Keep every reference-sheet corner visible. The built-in **Try illustrated example** also exercises the real pipeline, with a persistent synthetic-input label.
+2. Upload JPEG, PNG or WebP. Position the four corner handles or numeric fields, confirm the short 210 mm edge is at the top, and run detection.
+3. OpenCV rectifies perspective. Browser-local pretrained SlimSAM proposes masks from contrast-supplied points. Inspect every boundary before confirming review. Brush/erase, keyboard rectangle editing, positive/negative SAM points, zoom, numeric point entry and five-step undo support correction. Missed paper can be prompted without re-encoding the image.
+4. Choose a Heart, Flower or Bird template in the available palette, or upload a simple target. Templates are explicitly designed patterns; image generation is unavailable. Uploaded targets use an aspect-preserving central square crop, shown beside the achievable result. Choose a 6 × 6 or 8 × 8 grid.
+5. Make the collage. Click a square to reveal its source in the original photograph. Exclude a paper to recompute from the remaining inventory or receive an honest shortage. Saving/reopening preserves explicit palette IDs, including papers with identical average colours.
+6. Download the HTML cutting/assembly plan. Open it and print at **100% actual size**, with fit-to-page disabled. Measure both sides of the **20 mm calibration square** before cutting. Each Source ID has one primary cutting page; overlapping viewports provide context, not duplicate pieces. Cut the original paper, then assemble the numbered squares. The PNG export also preserves original crop textures. Illustrated inputs remain labelled in exports.
+7. Save to this browser, download a portable project JSON, or clear local data on shared devices.
 
-Photos and targets are processed in the browser. Model weights/runtime download from Hugging Face/CDN; image inputs are not uploaded. Sessions save to this browser’s IndexedDB. Download a portable project JSON or clear local data on shared devices. No API key is required for the app.
+Input photographs and target images stay in the browser. Model weights and runtimes download from Hugging Face/CDNs, which receive ordinary connection metadata. No image POST or app API key is needed. Saved/exported projects contain the input images, so share them deliberately.
 
 ## Run locally
 
@@ -26,7 +27,7 @@ npm ci
 npm run dev
 ```
 
-Open http://localhost:3000. The project settings disable dependency install scripts and use legacy peer resolution, matching the verified lockfile. The explicit build/dev command copies the pinned OpenCV runtime from the installed package into the public vendor directory. Native ONNX and Sharp are excluded from browser bundles.
+Open http://localhost:3000. The checked-in npm configuration disables dependency install scripts and uses the verified lockfile’s peer-resolution settings. Build/dev prepares the pinned OpenCV runtime from the installed package; native ONNX and Sharp are excluded from browser bundles.
 
 ```sh
 npm test
@@ -35,18 +36,24 @@ npm run build
 npm start
 ```
 
-For browser checks, start the production server on 127.0.0.1:3037 and run `npm run test:e2e`. Tests use an installed Google Chrome in muted mode. `PLAYWRIGHT_BASE_URL` can point the same checks at a deployment. Synthetic fixtures are explicitly engineering inputs; they are not real-paper evaluation photographs.
+For browser checks, start a production server on 127.0.0.1:3037 and run `npm run test:e2e`. `PLAYWRIGHT_BASE_URL` points the same checks at a deployment. Tests use installed Google Chrome with audio muted. Recorder setup and commands are in `submission/WALKTHROUGH-README.md`.
 
-## How it works
+## Engineering
 
-The A4 reference is rectified to 1050×1485 pixels (5 px/mm). Conservative 12 mm tiles are accepted only when their whole footprint plus a 1 mm margin lies inside one included, exclusive mask. A 14 mm lattice keeps source pieces separate. A rectangular Hungarian assignment minimises squared CIELAB distance while using every source tile at most once. Capacity shortages produce an error. Preview and print plans use the same source IDs and unmodified photographic crops.
+A4 is rectified to 1050 × 1485 pixels (5 px/mm). A 12 mm source square is accepted only when its whole footprint plus a 1 mm margin is inside one included, exclusive mask. A 14 mm lattice keeps source pieces separate. A rectangular Hungarian assignment minimises squared CIELAB distance and uses each source tile at most once. Capacity shortages block allocation.
 
-Assembly plans are 72 mm or 96 mm square. The source sheet is divided into four overlapping 120×168.5 mm viewports, each printed at actual size with a locator and physical offset. A numbered mapping table joins source positions to assembly cells.
+Preview, source trace, assembly grid and export share source IDs. Assembly is 72 mm or 96 mm square. Four overlapping 120 × 168.5 mm cutting viewports include locators and offsets; a mapping table identifies each piece’s primary page and assembly cell.
 
-## Evidence and development
+## Verification and evidence
 
-Unit checks cover geometry, holes, margins, source overlap, uniqueness, shortages, stale revisions, session encoding and physical export scale. Browser checks cover the integrated workflow and actual pretrained inference; current outcomes are in EVALUATION.md. No ten-camera-photo benchmark or physical assembly has been supplied yet. Deployment, public video and submission are tracked in BUILD-STATUS.md; no pending milestone is presented as complete.
+Latest unit run: **59 passing tests in 1.90 s**; production build and type checking pass. On October 11 the updated release passed **all nine local Chrome browser checks in 31.7 s**, including actual pretrained inference, example labels, source tracing, print calibration, project recovery, mobile overflow and the served walkthrough asset. The previous public release passed six checks; the updated public nine-check run is pending.
 
-Development assistance: Codex coordinated, reviewed and integrated external Featherless API coding jobs. GLM-5.3-Flash supplied export code that was corrected during review. GLM-5.3’s larger requests returned incomplete output; Codex implemented the remaining engine. GLM-5.2 supplied reviewed pattern, SAM refinement, material report and keyboard-prompt code during the improvement loop; its text-based rubric review is recorded separately. Malformed or incomplete responses were reviewed rather than installed automatically. Total Featherless spending is capped at $10, inclusive of earlier requests and conservative reservations. Featherless supplies development assistance, not OFFCUT’s segmentation or image generator. Credentials, billing records and worker responses live outside this source directory.
+The final **2:22** narrated/captioned engineering recording is captured: 142.16 s, 1280 × 720, eleven scenes, H.264 video and AAC narration. It uses illustrated input with real OpenCV/SlimSAM and shows unique allocation, source tracing, actual removal/recompute and the exported plan. Full-grid framing was visually checked. The final media files exist under `public/demo/`; public release verification remains pending at this checkpoint.
 
-Read APP-BRIEF.md, WIN-CONTRACT.md, DESIGN.md, LIMITATIONS.md, EVALUATION.md and THIRD-PARTY.md. Ceremony-specific constraints remain unverified; Rishik instructed continuation under the published Image AI theme.
+**No real camera photographs have been evaluated, no physical assembly is verified, and no human usability result is claimed.** The illustrated example and synthetic fixtures are engineering evidence, not real-world accuracy measurements. Public YouTube publication and Devpost submission remain unverified. Current outcomes live in EVALUATION.md and BUILD-STATUS.md; the preserved APP-BRIEF.md is the original brief/event record.
+
+## Credits and submission
+
+Codex and user-authorized Featherless GLM-5.3-Flash, GLM-5.3 and GLM-5.2 assisted implementation and review. The user later permitted any suitable model; final interface, recorder and release work also uses native Codex assistance. Featherless supports development, not the app’s image inference. No model was trained for this event. Private credentials and billing/worker records stay outside this repository; Featherless spending remains capped at $10 including previous usage/reservations, with no purchases or top-ups.
+
+Read DESIGN.md, LIMITATIONS.md, THIRD-PARTY.md and WIN-CONTRACT.md. The copy-ready write-up and exact fields are in `submission/DEVPOST-DRAFT.md` and `submission/DEVPOST-READY.md`; `submission/HUMAN-PROOF.md` explains the remaining paper test. Ceremony-specific constraints remain unverified; Rishik authorized continuation under the published Image AI theme.

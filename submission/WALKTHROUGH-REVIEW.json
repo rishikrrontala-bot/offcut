@@ -1,0 +1,70 @@
+{
+  "verdict": "needs-fixes",
+  "reviewer": "GLM-5.3",
+  "subject": "GLM-5.2 OFFCUT walkthrough recorder (submission/WALKTHROUGH-NARRATION.json, submission/WALKTHROUGH-README.md, scripts/record-walkthrough.cjs)",
+  "blockers": [
+    {
+      "id": "B1",
+      "severity": "blocker",
+      "title": "Narration timestamps are offset by page-load time (audio/video misalignment)",
+      "detail": "runFlow sets t0 = Date.now() after launchBrowser and after page.goto returns. Playwright recordVideo begins at page creation, so the WebM contains the pre-t0 page-load seconds. Because assemble() delays each AIFF by timeline[i].start (relative to t0), every narration segment plays late in the final MP4 by the duration of the initial goto (commonly 1-4s). This violates the requirement that the audible track is delayed by scene timestamps matching the recorded video, and breaks caption/narration sync.",
+      "fix": "scripts/walkthrough-patch.json operation 1-2: capture videoStart immediately after launchBrowser in record() and pass it into runFlow so t0 equals video-recording start.",
+      "status": "patch-provided"
+    },
+    {
+      "id": "B2",
+      "severity": "blocker",
+      "title": "ffmpeg cannot stream-copy VP8 into MP4",
+      "detail": "Playwright recordVideo produces WebM with VP8 video. assemble() uses '-c:v copy' into an .mp4 output. ffmpeg rejects VP8 in the MP4 container ('Could not find tag for codec vp8 in stream #0'), so the assemble step will always exit non-zero and no MP4/manifest can ever be produced. The requirement for a stable, verifiable final artifact is unmet.",
+      "fix": "scripts/walkthrough-patch.json operation 3: transcode video to H.264/yuv420p (the bundled imageio-ffmpeg binary includes libx264 and aac) instead of stream-copying VP8 into MP4.",
+      "status": "patch-provided"
+    }
+  ],
+  "patch_status": {
+    "summary": "The three script patches from scripts/walkthrough-patch.json were mechanically applied. Blockers B1 and B2 are patched. Runtime verification (rehearse, record, assemble, manifest check) is still pending and has not been run; blockers are not cleared or verified yet.",
+    "B1": "patched-pending-verification",
+    "B2": "patched-pending-verification"
+  },
+  "nonblocking": [
+    "Stale-webm handling: if artifacts/walkthrough/video.webm exists from a prior run, record() reuses it instead of the new recording. Consider deleting video.webm and any *.webm in ART before recording.",
+    "synthesizeVoice(narration.scenes, false) reuses existing voice/*.aiff even if WALKTHROUGH-NARRATION.json text changed since they were synthesized; stale narration audio would not be detected. Consider regenerating when narration text differs.",
+    "The MP4 resolution check regex /(\\d{3,4})x(\\d{3,4})/ matches the first WxH anywhere in ffmpeg stderr (e.g. configuration banner); a stricter match on the Video: stream line would be more robust.",
+    "Rehearsal receipt does not bind the narration content (e.g. hash of scene texts), so --record can run against a receipt produced with different narration.",
+    "The README says '-c:v copy'-style 'muxed' wording; after B2 fix the step is a transcode - wording only, no behavior impact.",
+    "MIN total duration (125s) is only enforced in assemble(); a too-short recording is detected late. Acceptable since it fails loudly."
+  ],
+  "requirement_checks": {
+    "truthful_synthetic_input": "pass - illustrated example only, badge and narration state it, no camera/assembly/proof claims found",
+    "actual_current_ui_no_preset_masks": "pass - recorder drives real UI selectors; no preset masks, fake images, or mocked segmentation anywhere",
+    "mandatory_review": "pass - scene 5 checks the real review checkbox and verifies isChecked()",
+    "actual_downloaded_plan": "pass - scene 9 captures the real download event, saves HTML under artifacts/walkthrough, verifies 20mm calibration, and displays it via setContent",
+    "persistent_label_badge_after_setContent": "pass - overlays (badge/caption/cursor) are reinjected after setContent and after the scene-10 goto",
+    "exact_narration_captions": "pass - loadNarration enforces caption === narration, exactly 10 scenes, max two sentences; scene-10 caption has a trailing newline which splits to no extra sentence - acceptable but noted",
+    "muted_chrome": "pass - headless chrome with --mute-audio, no audio playback during recording",
+    "say_with_dash_o_only": "pass - spawnSync(SAY, ['-o', file, narration]) with no speaker/voice or playback",
+    "no_api_calls_secrets_uploads": "pass - only localhost BASE_URL, /usr/bin/say, and the pinned ffmpeg binary; no network APIs, secrets, uploads, or publishing",
+    "bounded_outputs": "pass - all outputs confined to artifacts/walkthrough; no writes outside the project",
+    "pre_record_rehearsal_receipt": "pass - record() requires receipt and matches BASE_URL",
+    "selectors_fail_loudly": "pass - requireVisible wraps locator/scroll/isVisible with process.exit(1)",
+    "stable_webm": "pass - context closed before rename to a fixed filename",
+    "audible_track_via_adelay_amix": "blocked by B1 (timing offset) and B2 (mux failure); filter design itself is correct",
+    "duration_125_180s": "pass with risk - enforced in assemble() as 125-165s; upper bound 165 is within the allowed 180s band"
+  },
+  "mandatory_commands": [
+    "node --check scripts/record-walkthrough.cjs",
+    "node -e \"JSON.parse(require('fs').readFileSync('submission/WALKTHROUGH-NARRATION.json','utf8')); JSON.parse(require('fs').readFileSync('submission/WALKTHROUGH-REVIEW.json','utf8')); console.log('json ok')\"",
+    "BASE_URL=http://127.0.0.1:3037 node scripts/record-walkthrough.cjs --rehearse",
+    "BASE_URL=http://127.0.0.1:3037 node scripts/record-walkthrough.cjs --record",
+    "node scripts/record-walkthrough.cjs --assemble",
+    "node -e \"const m=JSON.parse(require('fs').readFileSync('artifacts/walkthrough/manifest.json','utf8')); if(!m.synthetic||m.published!==false)throw new Error('manifest truthiness'); if(m.seconds<125||m.seconds>180)throw new Error('duration out of band: '+m.seconds); if(m.width!==1280||m.height!==720)throw new Error('resolution'); console.log('manifest ok', m.seconds+'s', m.width+'x'+m.height)\""
+  ],
+  "expected_artifacts": [
+    "artifacts/walkthrough/rehearsal-receipt.json",
+    "artifacts/walkthrough/voice/*.aiff (10 files, scene-01..scene-10)",
+    "artifacts/walkthrough/engineering-walkthrough.webm",
+    "artifacts/walkthrough/engineering-walkthrough.mp4 (H.264 + AAC, 1280x720, 125-180s, audible narration aligned to scene timestamps)",
+    "artifacts/walkthrough/manifest.json (synthetic:true, published:false, scene timeline, badge, credits, limitations)",
+    "artifacts/walkthrough/offcut-example-plan.html",
+    "artifacts/walkthrough/scene-timing.json"
+  ]
+}

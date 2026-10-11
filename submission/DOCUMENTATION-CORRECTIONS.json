@@ -1,0 +1,29 @@
+{
+  "operations": [
+    {
+      "path": "README.md",
+      "find": "Development assistance: Codex coordinated, reviewed and integrated external Featherless API coding jobs. GLM-5.3-Flash supplied export code that was corrected during review; earlier Codex code, review and integration work predates the current task restriction and is preserved as historical record. GLM-5.3 supplied reviewed engine and example work; its resume audit found no blockers, with a remaining duplicate-colour palette collision risk noted as non-blocking. GLM-5.2 supplied reviewed pattern, SAM refinement, material report and keyboard-prompt code during the improvement loop; its text-based rubric review is recorded separately. Malformed or incomplete responses were reviewed rather than installed automatically. A GLM video-recorder task is in progress; no video has been generated yet.",
+      "replace": "Development assistance: After Rishik approved a coordination exception, Codex only coordinated and performed mechanical execution; all project reasoning, coding, debugging, testing, design and review came from GLM. The original pure engine was implemented by Codex before the current restriction, not by GLM-5.3. GLM-5.3-Flash supplied export code that was corrected during review. GLM-5.2 supplied the new lib/demo-input.ts and print calibration before the pause, with root integration before the current policy. GLM-5.3 supplied the recorder and, as reviewer, provided timestamp and transcode patches; its resume audit of the GLM-5.2 lib/demo-input.ts and print-calibration work found no blockers. GLM-5.2 supplied reviewed pattern, SAM refinement, material report and keyboard-prompt code during the improvement loop; its text-based rubric review is recorded separately. A GLM-5.3 large recorder attempt was incomplete and not installed; a GLM-5.2 retry produced complete files. Malformed or incomplete responses were reviewed rather than installed automatically. The three walkthrough-recorder script patches were mechanically applied; blockers B1 and B2 are patched but runtime verification is still pending, not cleared or verified yet. No video has been generated yet."
+    },
+    {
+      "path": "EVALUATION.md",
+      "find": "A GLM video-recorder task is in progress; no video has been generated yet. Automated playback must stay muted.",
+      "replace": "A GLM walkthrough-recorder task is in progress; the three script patches (timestamp and transcode) were mechanically applied and blockers B1 and B2 are patched, but runtime verification is still pending and no video has been generated yet. Automated playback must stay muted."
+    },
+    {
+      "path": "BUILD-STATUS.md",
+      "find": "A GLM video-recorder task is in progress; do not claim any video has been generated yet.",
+      "replace": "A GLM walkthrough-recorder task is in progress; the three script patches (timestamp and transcode) were mechanically applied and blockers B1 and B2 are patched, but runtime verification is still pending. Do not claim any video has been generated yet."
+    },
+    {
+      "path": "BUILD-STATUS.md",
+      "find": "All external coding jobs have ended; GLM-5.3 supplied reviewed engine/example work and its resume audit found no blockers; GLM-5.2 supplied reviewed targets, SAM refinement, material reporting and keyboard prompt entry during improvement iterations; the spend ledger tracks reservations within the $10 cap.",
+      "replace": "All external coding jobs have ended. After Rishik approved a coordination exception, Codex only coordinated and performed mechanical execution; all project reasoning, coding, debugging, testing, design and review came from GLM. The original pure engine was implemented by Codex before the current restriction, not by GLM-5.3. GLM-5.2 supplied the new lib/demo-input.ts and print calibration before the pause, with root integration before the current policy; GLM-5.3 reviewed that work and found no blockers. GLM-5.3 supplied the recorder and, as reviewer, provided timestamp and transcode patches; a GLM-5.3 large recorder attempt was incomplete and not installed, and a GLM-5.2 retry produced complete files. GLM-5.2 supplied reviewed targets, SAM refinement, material reporting and keyboard prompt entry during improvement iterations; the spend ledger tracks reservations within the $10 cap."
+    },
+    {
+      "path": "submission/DEVPOST-DRAFT.md",
+      "find": "Codex coordinated implementation and verification. Featherless GLM-5.3-Flash supplied reviewed export repairs; later GLM-5.3 work covered the engine and the illustrated example, and its resume audit found no blockers. GLM-5.2 supplied reviewed targets, SAM refinement, material accounting and keyboard prompt entry. Credit goes to OpenCV, Transformers.js, SlimSAM, Meta SAM and Xenova for the pretrained tools.",
+      "replace": "After Rishik approved a coordination exception, Codex only coordinated and performed mechanical execution; all project reasoning, coding, debugging, testing, design and review came from GLM. The original pure engine was implemented by Codex before the current restriction. GLM-5.2 supplied the new lib/demo-input.ts and print calibration; GLM-5.3 reviewed that work and found no blockers. GLM-5.3 supplied the recorder and provided timestamp and transcode patches; a GLM-5.2 retry produced complete recorder files. GLM-5.2 supplied reviewed targets, SAM refinement, material accounting and keyboard prompt entry. Credit goes to OpenCV, Transformers.js, SlimSAM, Meta SAM and Xenova for the pretrained tools."
+    }
+  ]
+}

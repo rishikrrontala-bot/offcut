@@ -1,19 +1,32 @@
-# OFFCUT — build checkpoint
+# OFFCUT — release and submission status
 
-Application implementation exists: a paper-studio interface, photo/corner calibration, OpenCV perspective correction, a real pretrained SlimSAM worker, mask correction/review, unique tile allocation, original-photo tracing, exclusion/recompute, local project recovery and actual-size printable plans. Image generation is unavailable; the target-upload fallback is explicit.
+Checkpoint: **October 11, 2026**. Protected submission time **9:59 p.m. EDT**; conservative final cutoff **11:59 p.m. EDT**. Optional polish must not consume the protected submission block.
 
-14 unit checks, a production build and all three complete browser checks passed after fixing the OpenCV loader. Subsequent improvement verification passed 56 unit checks and all five browser journeys locally. Actual pretrained inference on a synthetic image produced four masks and 104 squares in a measured 7.7-second model stage. No camera-photo accuracy result is claimed.
+## Software
 
-Independent review identified and fixed mask-review bypass, grid-change races, keyboard-inaccessible uploads, landscape calibration ambiguity, asynchronous clear races, imported-image dimensions and repeated-photo export memory usage. Fresh browser verification passed after those fixes.
+The committed product scope is implemented: calibrated photo/corner input; real browser-local pretrained segmentation with review/correction/recovery; conservative unique tile extraction; capacity-aware CIELAB allocation; actual crop previews; original-photo tracing; exclude/recompute; local/portable project recovery; stable palette restoration; clean PNG and calibrated numbered print plans. The labelled illustrated example runs the same OpenCV/SlimSAM pipeline without hardcoded masks. Image generation remains unavailable; target upload and explicitly designed patterns are the supported choices.
 
-The opening-ceremony challenge is still unverified. Rishik instructed continuation after being asked; implementation follows the published Image AI theme. Original implementation standard remains verbatim in APP-BRIEF.md.
+Latest unit run: **59 passing tests in 1.90 s**. Production build/type checking pass. Updated local browser suite: **nine passing checks in 31.7 s**, including phone header overflow and real video asset checks. Updated public nine-check verification is pending. The prior public release at commit `0dff9b0` passed six journeys in 28.9 s, with deployment `dpl_7NNJKmXSNAT48qKZw16wgevpb5So` READY.
 
-Repository recheck found no existing empty OFFCUT/Banana repository. Public source is https://github.com/rishikrrontala-bot/offcut . Production is https://offcut-six.vercel.app ; all three browser checks passed there without login. The first framework configuration served a 404 and was corrected before verification. Featherless development calls initially occurred under the $24.981258000 ceiling. Rishik reduced the total cap to $10 on October 10, including prior calls; the worker and ledger now enforce that cap, with an integer budget ledger and no purchases or plan changes. Incomplete hard-model output was not accepted as working code. Private files are outside this source folder.
+The final eleven-scene narrated/captioned engineering recording is captured and checked: **142.16 seconds (2:22), 1280 × 720, H.264/AAC**. The initial 128.16 s clip passed stream/audio checks but failed visual presentation review because its allocation scene was scrolled below the artwork. The corrected recorder’s full-grid visibility and actual material exclusion/reallocation checks passed; all five final gallery frames were visually inspected. The accepted video, matching transcript and eleven-caption SRT are prepared. The first clip is excluded from the final upload bundle.
 
-Need from Rishik: ten new supported camera photographs with capture conditions; one human print/calibration/cut/assembly sequence and a photograph of the result. Synthetic images cannot substitute. Public narrated captioned 2–3-minute YouTube demo and verified <=500-word Devpost submission remain outstanding.
+Public app: https://offcut-six.vercel.app/ . Public source: https://github.com/rishikrrontala-bot/offcut . Final media exists under `public/demo/`. Walkthrough/media public deployment and the updated public checks are pending at this checkpoint.
 
-Protected submit time: October 11, 2026 at 21:59 EDT. Conservative final cutoff: 23:59 EDT. Optional polish must not consume submission time. The one-time resume automation is paused after running.
+## Evidence still requiring a human
 
-Submission draft: submission/DEVPOST-DRAFT.md (382 words, explicitly not submitted). Video outline: submission/VIDEO-PLAN.md (2:30, human footage still required). No video or entry has been published. All external coding jobs have ended; GLM-5.2 supplied reviewed targets, SAM refinement, material reporting and keyboard prompt entry during improvement iterations; the spend ledger retains the unresolved timeout reservation and the original cap.
+- Ten new supported camera photographs and real pipeline results: **zero evaluated**.
+- Ruler-verified print/cut/assembly and photographed result: **unverified**.
+- Human usability/self-test result: **not performed**.
+- PUBLIC YouTube demo between two and three minutes: **not uploaded or verified**.
+- Devpost entry, at most 500 words: **prepared, not submitted or verified**.
+- Opening-ceremony challenge constraint: **unverified**; Rishik instructed continuation under the published Image AI theme.
 
-Improvement loop: real SAM missed-paper recovery and positive/negative refinement, one-image encoding reuse, zoom, exact five-step undo, numeric point entry, labelled capture illustration, designed targets in the photographed palette, aspect-preserving sampled targets, per-paper usage/shortage counts, clean original-texture PNG and one primary cutting page per piece are implemented and locally verified. Public release verification follows; camera-photo evaluation, physical assembly and public demo remain outstanding.
+The paper instructions are in `submission/HUMAN-PROOF.md`. The entry text and exact fields are in `submission/DEVPOST-DRAFT.md` and `submission/DEVPOST-READY.md`. Automated browser account access was rejected by an administrative security check; the Devpost connector returned an internal error. Manual account publication/submission remains necessary. Neither access restriction authorizes a bypass.
+
+## Authorship and controls
+
+Built solo by Rishik Rontala. Git author identity remains `Rishik Rontala <297979650+rishikrrontala-bot@users.noreply.github.com>`.
+
+Development assistance includes Codex and Featherless GLM-5.3-Flash/GLM-5.3/GLM-5.2. GLM supplied reviewed export, pattern, mask refinement, material accounting, keyboard prompts, example/print refinements, recorder retries and reviews. Codex implemented the original engine and, after the user permitted any suitable model, the final responsive-header/recorder improvements and release integration. Incomplete outputs were rejected. Featherless is not OFFCUT’s segmentation or image generator. The $10 Featherless cap includes previous usage and reservations; no purchases, top-ups or plan changes are authorized. Private credentials, ledger and worker records remain outside the source folder.
+
+The repository was checked for an existing empty event repository before creation. Event-time work is fresh. APP-BRIEF.md retains the original brief and implementation standard verbatim. The one-time resume automation is paused after running. Current evidence is recorded here and in EVALUATION.md; no pending milestone is counted as complete.

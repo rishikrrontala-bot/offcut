@@ -1,0 +1,10 @@
+{
+  "blocking": [],
+  "nonblocking": [
+    "The walkthrough link now appears in the topbar session-actions div alongside Save project. On narrow viewports the session-actions row already contains a save-state span, an Open project label, a Save project button, and the walkthrough link — confirm CSS flex-wrap or overflow handling keeps this row within 390px without horizontal scroll. The e2e test at 390px only checks /walkthrough, not the studio root, so a potential studio overflow at phone width is not covered by existing tests.",
+    "The restore() function introduces a local parameter named 'id' (the savedId helper arrow) that shadows the outer 'id' parameter (opRef counter). This is functionally safe because savedId only receives s.fgId/s.bgId and the outer id is not read after the helper is defined, but the shadowing could confuse future maintainers. Consider renaming the helper parameter to 'saved' or 'rawId'.",
+    "The session autosave useEffect dependency array now includes fgId and bgId. This means every palette dropdown change triggers a 600ms debounced saveLocal call. This is correct behavior but slightly increases IndexedDB write frequency during rapid palette toggling. The debounce mitigates this adequately."
+  ],
+  "required_commands": [],
+  "approve_boolean": true
+}

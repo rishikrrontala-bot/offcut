@@ -1,0 +1,45 @@
+{
+  "review": "recorder duration / re-record fix",
+  "blocking": [
+    {
+      "id": "B1",
+      "severity": "blocker",
+      "category": "playwright-video-api",
+      "anchor": "scripts/record-walkthrough.cjs :: record() :: const video = page.video(); const recordedPath = video ? await video.path() : null;",
+      "issue": "page.video() is called AFTER page.close() and context.close(). Per https://playwright.dev/docs/videos, page.video() returns null once the page is closed, so recordedPath will be null and the script will always fail with 'Playwright did not return a video path via page.video().path()'. The official API requires calling page.video().path() while the page/context is still alive (the file is written on context close, but the Video object must be obtained before page.close()).",
+      "fix": "Capture the Video object before closing anything: const video = page.video(); recordedPath = await video.path(); can be awaited after context.close() only if the Video handle was obtained earlier. Reorder to: (1) const video = page.video(); (2) await context.close(); (3) const recordedPath = await video.path(); \u2014 but page.video() itself must be called before page.close(). Safest: const video = page.video(); before any close, then close context, then await video.path().",
+      "evidence": "Playwright docs: 'Video object is returned by page.video(). You can get the path of the recorded video by calling video.path(). The video is saved when the context is closed.' page.video() returns null after page is closed."
+    },
+    {
+      "id": "B2",
+      "severity": "blocker",
+      "category": "duration-pacing",
+      "anchor": "scripts/record-walkthrough.cjs :: sceneEnd() :: const needed = ctx.start + ctx.voice.durationMs / 1000 + (record ? PACE_TAIL_SECONDS : 0.4);",
+      "issue": "PACE_TAIL_SECONDS=6.0 is added to EVERY scene. With 10 scenes and ~5s narration each, total = 10*(5+6) = ~110s + interaction time. This may still fall below 125s if narration is short, or the pacing may be insufficient. The MIN_TOTAL_SECONDS check at the end will hard-fail without any corrective action. There is no mechanism to extend the final scene or distribute remaining time to reach the 125s floor. The prior 75.3s MP4 failed min check; this patch adds 60s of tail (10*6s) which gets to ~135s, but if narration is shorter than expected or scene interactions are faster in headless mode, it could still miss 125s.",
+      "fix": "After the final scene, if total < MIN_TOTAL_SECONDS, add an explicit hold on the last scene for (MIN_TOTAL_SECONDS - total) seconds instead of failing. Alternatively, compute PACE_TAIL_SECONDS dynamically: PACE_TAIL_SECONDS = max(6.0, (MIN_TOTAL_SECONDS - estimatedNarrationTotal - estimatedInteractionTime) / 10). The hard fail on < 125s with no recovery path is a blocker since the script cannot self-correct.",
+      "evidence": "Scene 10 checks 'if (record && total < MIN_TOTAL_SECONDS) fail(...)' \u2014 this aborts the entire recording after ~135s of work with no retry or padding mechanism."
+    },
+    {
+      "id": "B3",
+      "severity": "blocker",
+      "category": "audio-video-alignment",
+      "anchor": "scripts/record-walkthrough.cjs :: assemble() :: '-t', videoDur.toFixed(3),",
+      "issue": "Replacing '-shortest' with '-t videoDur' fixes the premature-truncation issue, but if the audio mix (narration + PACE_TAIL silence) extends beyond videoDur, the audio will be cut at videoDur. Conversely, if videoDur > audio mix duration, the tail will be silent. The amix uses 'duration=longest' which produces audio as long as the longest delayed stream. With PACE_TAIL_SECONDS padding, the last scene's audio ends at scene10.start + scene10.voice.durationMs. If the video is longer (due to tail holds), audio may end before video ends \u2014 producing silent video tail. Need to verify that amix output duration >= videoDur, or use '-shortest' on video only and '-longest' on audio.",
+      "fix": "Use '-map 0:v' with '-t videoDur' for video, but for audio ensure the amix duration covers the full video. Alternatively, add '-apad' before aac encoding to pad audio to videoDur, then use '-shortest' to align. This ensures audio fills the entire video duration without truncation.",
+      "evidence": "amix=duration=longest produces audio as long as the longest input stream (last delayed AIFF). If video has tail-silence beyond last narration, audio ends early."
+    }
+  ],
+  "approve": false,
+  "required_checks": [
+    "Fix B1: Call page.video() BEFORE page.close()/context.close() to obtain the Video handle; then close context; then await video.path() to get the recorded file path. Verify with a dry-run that recordedPath is non-null and the file exists.",
+    "Fix B2: Replace the hard fail on total < MIN_TOTAL_SECONDS with a padding mechanism that extends the final scene hold to reach 125s minimum, or compute PACE_TAIL_SECONDS dynamically based on narration total duration.",
+    "Fix B3: Add '-apad' to the audio filter chain or use '-af apad' before aac encoding so audio is padded to match videoDur, preventing silent video tails. Verify MP4 audio stream duration >= video duration via ffprobe.",
+    "Verify caption/narration alignment: each scene's caption text is set via setCaption() at sceneStart and the AIFF is delayed to scene.start in the amix filter. Confirm timeline[i].start matches the video clock (videoStart anchor). Check that caption changes are visible in the video at the correct timestamps.",
+    "Verify no exported frames are frozen: Scene 9 calls page.setContent(html) which replaces the page DOM. After setContent, overlays are reinjected but the page URL changes to about:blank. Confirm Playwright video recording continues through setContent without freezing. The video should show the plan HTML rendering, not a frozen frame.",
+    "Verify muted-safe: browser launches with '--mute-audio' arg. Confirm this does not affect the recorded WebM (WebM has no audio track from Playwright). The audio is mixed in during assemble() from AIFF files. Confirm the final MP4 has audible narration at correct timestamps.",
+    "Run the full --record pipeline end-to-end and confirm: (1) WebM is produced and moved to engineering-walkthrough.webm, (2) MP4 duration is within 125-165s, (3) MP4 has both video and audio streams, (4) manifest.json seconds field matches ffprobe duration.",
+    "Verify page.video().path() returns a valid path after context close but with the Video handle obtained before page close. Test the exact sequence: const video = page.video(); await page.close(); await context.close(); const recordedPath = await video.path(); \u2014 confirm this works per Playwright API."
+  ],
+  "historical_status": "Pre-release audit from October 10; follow-up changes and final review supersede software findings.",
+  "superseded_by": "submission/FINAL-RELEASE-REVIEW.md"
+}

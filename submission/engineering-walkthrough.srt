@@ -1,0 +1,43 @@
+1
+00:00:00,036 --> 00:00:13,696
+OFFCUT turns leftover paper into a collage you can actually make. This is an engineering demonstration using the built-in illustrated example.
+
+2
+00:00:14,579 --> 00:00:26,649
+We load the illustrated example, not a camera photo. The same real image AI will segment it in the browser.
+
+3
+00:00:27,466 --> 00:00:38,826
+Confirming the A4 corners runs real local segmentation. Four scraps are detected automatically.
+
+4
+00:00:39,668 --> 00:00:51,428
+The material map shows the learned masks on the corrected sheet. Every boundary must be reviewed before cutting.
+
+5
+00:00:52,315 --> 00:01:07,575
+OFFCUT requires a mandatory human boundary review before cutting. Checking the review box is only a recording step and is not evidence that a human inspected each boundary.
+
+6
+00:01:08,468 --> 00:01:19,338
+Choosing Heart and making the collage assigns thirty-six unique crops from the illustrated input.
+
+7
+00:01:20,143 --> 00:01:31,403
+Clicking a piece traces it back to its source on the original sheet. No piece is invented or reused.
+
+8
+00:01:32,260 --> 00:01:43,200
+Hiding the piece numbers shows the clean mosaic. Each square is a real crop, not a recolour.
+
+9
+00:01:44,076 --> 00:01:56,856
+Remove one paper and the collage recomputes from what remains. Every tile still comes from a unique surviving source.
+
+10
+00:01:57,661 --> 00:02:10,001
+The cutting and assembly plan downloads with a twenty-millimetre calibration square. Physical cutting remains unverified.
+
+11
+00:02:10,824 --> 00:02:21,594
+Built by Rishik Rontala. Physical cutting and real success are still unverified.

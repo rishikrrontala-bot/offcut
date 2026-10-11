@@ -1,0 +1,67 @@
+{
+  "adjudication": "GLM5.2 recorder review vs actual code and official Playwright docs",
+  "review_verdict": "partially correct; approve after narrow fixes",
+  "blocks": [
+    {
+      "id": "B1",
+      "claim": "page.video() called after page.close() returns null, so recordedPath is always null",
+      "adjudication": "UPHELD (with correction)",
+      "resolution": "Capturing the Video handle before page.close() and awaiting path() after context.close() is applied via P1. Docs: video.path() resolves after context close; page.video() returning null after page close is not explicitly stated but the risk is real and the pre-close handle is the documented, robust pattern. Reviewer's exact claim that docs state 'returns null once closed' overstates the primary docs; we fix on robustness grounds, not on the reviewer's quoted text."
+    },
+    {
+      "id": "B2",
+      "claim": "Hard fail below 125s with no recovery path",
+      "adjudication": "UPHELD",
+      "resolution": "P2 replaces the Scene-10 hard fail with a live hold of the actual credits UI until the 125s floor is met (plus small margin). This is a genuine on-screen hold of the real UI, not export padding, not a lowered floor, not frozen or slowed footage. The 165s max check remains a hard fail. PACE_TAIL_SECONDS=6.0 per-scene pacing is retained unchanged."
+    },
+    {
+      "id": "B3",
+      "claim": "Add -apad so audio is padded to videoDur and 'prevents silent video tails'",
+      "adjudication": "PARTIALLY UPHELD, with correction",
+      "resolution": "The reviewer's mechanism claim is wrong: apad pads zeros; it does not prevent silence. The existing '-t videoDur' already correctly aligns output to the recorded video and does not truncate narration (narration for every scene ends before that scene's hold ends, by construction of sceneEnd). Residual issues actually fixed: (1) amix divides amplitude across 10 inputs by default, making narration ~-20 dB too quiet \u2014 fixed with normalize=0 via P3; (2) audio stream shorter than video stream is cosmetically inconsistent for players \u2014 fixed with apad=whole_dur=videoDur so the audio track length matches the video (trailing tail is genuine quiet hold, matching the live recording); (3) audibility is now verified with volumedetect (max_volume must exceed -40 dB) via P4. No invented ffmpeg flags; amix normalize, apad whole_dur, and volumedetect are real ffmpeg options/filters."
+    }
+  ],
+  "rejected_claims": [
+    {
+      "claim": "setContent(about:blank) in Scene 9 may freeze the recorded video",
+      "verdict": "NOT A DEFECT",
+      "reason": "Playwright video records frames continuously through setContent; overlays are reinjected and calibration-row/20mm visibility is asserted on the live rendered plan. No evidence of freeze; required check only."
+    },
+    {
+      "claim": "--mute-audio browser arg might affect the recording",
+      "verdict": "NOT A DEFECT",
+      "reason": "Playwright WebM video carries no audio track; narration is muxed from AIFFs in assemble(). --mute-audio only silences page audio events; harmless."
+    }
+  ],
+  "prior_patch_verification": [
+    {
+      "claim": "PATCH: force=true in synthesizeVoice call",
+      "verdict": "PRESENT in actual code",
+      "reason": "synthesizeVoice(narration.scenes, true) exists in record(); stale AIFF reuse is prevented."
+    },
+    {
+      "claim": "-shortest removal and -t videoDur",
+      "verdict": "PRESENT in actual code",
+      "reason": "'-t', videoDur.toFixed(3) present; premature audio truncation already fixed before this review."
+    }
+  ],
+  "approve": true,
+  "conditions": [
+    "Apply P1-P4 patch ops; do not modify MIN/MAX bounds or scene pacing constants.",
+    "Current corrected recording is still running; outcome unknown. This approve is conditional on the running artifact passing the checks below; if it fails, re-run --record (no re-rehearsal needed unless selectors changed)."
+  ],
+  "required_checks": [
+    "node scripts/record-walkthrough.cjs --rehearse (selectors unchanged expected; receipt refresh)",
+    "node scripts/record-walkthrough.cjs --record (or, if only mux changes were needed, node scripts/record-walkthrough.cjs --assemble against existing artifacts)",
+    "<ffmpeg> -hide_banner -i artifacts/walkthrough/engineering-walkthrough.mp4 \u2014 confirm Duration within 125-165s, one H.264 video stream 1280x720 and one AAC audio stream",
+    "<ffmpeg> -hide_banner -i artifacts/walkthrough/engineering-walkthrough.mp4 -map 0:a -af volumedetect -f null - \u2014 confirm max_volume > -40 dB and mean_volume within a plausible narration range (not silent, not clipped at 0.0 dB)",
+    "<ffmpeg> -hide_banner -i artifacts/walkthrough/engineering-walkthrough.mp4 -map 0:a -af astats -f null - \u2014 confirm audio stream duration within ~0.1s of video duration (apad whole_dur)",
+    "jq '.seconds, .width, .height, .scenes | length' artifacts/walkthrough/manifest.json \u2014 seconds in [125,165], 1280x720, 10 scenes",
+    "jq '.scenes[].end' artifacts/walkthrough/scene-timing.json \u2014 verify each scene end > its start and narration start >= scene start for every scene",
+    "Manually spot-check MP4: captions change at scene boundaries, plan HTML renders live in Scene 9 (not a frozen frame), final credits scene visibly held to reach 125s floor"
+  ],
+  "out_of_scope": [
+    "No changes to MIN_TOTAL_SECONDS, MAX_TOTAL_SECONDS, PACE_TAIL_SECONDS, DETECT_TIMEOUT_MS, or narration content.",
+    "No export-footage speed changes, freeze frames, or duration padding outside the live browser hold."
+  ]
+}

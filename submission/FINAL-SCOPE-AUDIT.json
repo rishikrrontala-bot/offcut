@@ -1,0 +1,46 @@
+{
+  "software_required": [
+    {
+      "gap": "The two real-asset walkthrough browser tests in tests/e2e/walkthrough.spec.ts are pending because the published /demo/engineering-walkthrough.mp4 asset (and matching transcript) does not yet exist; the actual walkthrough capture run is in progress and its success is unknown.",
+      "evidence": "tests/e2e/walkthrough.spec.ts performs a real HTTP GET on /demo/engineering-walkthrough.mp4 expecting status 200 with video/mp4, duration 125-180s, 1280x720, plus a transcript containing the exact narration line; BUILD-STATUS.md states the recorder run is in progress with B1/B2 patched but runtime verification pending and 'no video has been generated yet'.",
+      "why_required": "A published walkthrough page linking to a missing video is a broken user-facing feature and a failing test suite entry; the release claim ('all journeys pass') is currently false for these two tests.",
+      "permanent_action": "Wait for the running capture to finish; then verify the produced MP4 (duration, dimensions, captions burned in, muted autoplay disabled) against the published tests, publish it with the generated transcript under public/demo/, run npx playwright test tests/e2e/walkthrough.spec.ts locally and against the deployment, and record the actual result in BUILD-STATUS.md and EVALUATION.md. If the capture fails, diagnose from the capture log with a bounded retry before any rework \u2014 do not fabricate video or weaken the assertions.",
+      "validation": "Both walkthrough tests pass locally and against https://offcut-six.vercel.app with the real served asset; the tests themselves already encode the meaningful input (real HTTP fetch of the real file, real metadata load, transcript content) and need no mirror-test additions."
+    },
+    {
+      "gap": "Documentation must be updated to state the true, final walkthrough-video status (capture result, test results, deployment verification) before the release claim is repeated.",
+      "evidence": "README.md, BUILD-STATUS.md and EVALUATION.md currently say the recorder run is 'pending, success not yet known'; once the capture resolves, those statements become stale either way.",
+      "why_required": "The user standard requires honest, current documentation; stating a pending run as complete (or leaving a resolved run as pending) violates it.",
+      "permanent_action": "After the capture outcome is known, update BUILD-STATUS.md, EVALUATION.md and README.md with actual timings, test results and artifact locations; keep the 'no camera photographs, no physical assembly, no public YouTube, no verified Devpost submission' statements intact.",
+      "validation": "Docs match the last recorded test run and artifact existence check; no claim of video, YouTube, Devpost, or camera-photo evaluation appears."
+    }
+  ],
+  "human_required": [
+    "Ten newly captured camera photographs of 4-8 separated flat opaque scraps on a contrasting A4 sheet under varied shapes, lighting and angles, with recorded conditions and timings; run each through the real pipeline and fill the EVALUATION.md table with real successes, failures, corrections and times. Software cannot capture, supply or simulate these.",
+    "One physical proof sequence: print the plan at 100%, measure the 20 mm calibration square with a physical ruler, cut the unique tiles, assemble one small collage, and photograph the original scraps, software preview, plans and assembled result together. Never fabricate the assembly image.",
+    "Publish the public narrated, captioned 2-3 minute (target ~2:30) YouTube video covering the required beats (paper-to-art opening, problem, uninterrupted real workflow, tile tracing, scrap removal and recompute, physical assembly, engineering and one honest limitation), and verify public visibility without login. Do not use the engineering walkthrough MP4 as a substitute for this judge-facing video.",
+    "Complete the actual Devpost submission: <=500-word write-up (submission/DEVPOST-DRAFT.md exists but is not submitted), credits for libraries, pretrained models and AI development tools, verified submission portal, and confirmation of the actual submission status. The Devpost connector currently returns an internal error, so submission must be done through the portal by Rishik.",
+    "Verify the opening-ceremony challenge announcement and confirm the committed scope matches it; Rishik's instruction to continue under the published Image AI theme is provisional and only Rishik can confirm the announced challenge.",
+    "Human user testing of the studio flow (the brief requires it; none performed)."
+  ],
+  "nonblocking": [
+    "restore() reconstructs fgId/bgId by average-colour equality, so two included scraps with identical average colours could restore the wrong palette mask; persisting fgId/bgId in the session would be deterministic (noted in submission/RESUME-REVIEW.json).",
+    "The walkthrough link only renders in the empty studio state; a persistent header link would improve discoverability (submission/WALKTHROUGH-PAGE-REVIEW.json).",
+    "Video element could add aspect-ratio/height:auto to avoid layout shift on slow connections (submission/WALKTHROUGH-PAGE-REVIEW.json).",
+    "lib/export.ts insertDisclaimers matches the literal page-open markup string; a shared constant would be more robust (submission/RESUME-REVIEW.json).",
+    "upload('photo') sets inputKind undefined twice; cosmetic only.",
+    "Ceremony-specific constraints remain unverified pending Rishik's confirmation of the announced challenge; continuation under the published Image AI theme is per Rishik's instruction."
+  ],
+  "scoped_complete": false,
+  "scoped_complete_rationale": "The committed software scope (perspective correction, real pretrained segmentation with mandatory review, unique constrained allocation, tracing, exclusion/recompute, actual-size exports, target-upload fallback, session recovery, 57 unit tests, 6 browser journeys, public deployment) is implemented and verified, and prior reviews found no software blockers. But the walkthrough video asset is not yet published, its two tests are unverified, and the brief's evidence obligations \u2014 ten camera photographs, physical assembly, human testing, public YouTube video and verified Devpost submission \u2014 are all unmet and are human-required. Completeness within the coordinator's reach cannot truthfully be claimed while these remain open and unverified.",
+  "evidence_limits": [
+    "This audit is text-only: no UI, screenshots, video frames or rendered pages were visually inspected; findings rely on the provided source files, test files and status documents.",
+    "The running walkthrough capture's outcome is unknown at audit time; nothing here asserts it succeeded or failed.",
+    "Test counts (57 unit tests, 6 browser journeys) are taken from the recorded October 10 runs, not re-executed during this audit.",
+    "No claim is made about Devpost submission, YouTube publication, camera-photo accuracy or physical assembly; none are evidenced.",
+    "Budget state ($1.1 of $10 cap occupied, no purchases) is taken from the coordinator's statement, not independently verifiable from the source tree.",
+    "Coordinator executes commands and reports results; all reasoning in this audit is GLM-authored per the stated attribution restriction."
+  ],
+  "historical_status": "Pre-release audit from October 10; follow-up changes and final review supersede software findings.",
+  "superseded_by": "submission/FINAL-RELEASE-REVIEW.md"
+}
