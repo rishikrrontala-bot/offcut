@@ -4,8 +4,8 @@
 
 - Latest unit result: **59 passing tests in 1.90 s**. Production compilation and type checking pass.
 - Updated local Chrome suite: **nine passing checks in 31.7 s**, after the responsive-header fix.
-- Updated public nine-check suite: **pending**. The previously verified public release passed six journeys in 28.9 s at commit `0dff9b0`.
-- Final eleven-scene engineering video: **captured and checked**, 142.16 s (2:22), 1280 × 720, H.264/AAC. It uses illustrated input with actual OpenCV and pretrained SlimSAM. Full-grid framing assertions and real material exclusion/reallocation checks passed. Five final frames were visually inspected: learned masks, clean achievable artwork, source trace, calibrated plan and exclusion/recompute. Final assets exist under `public/demo/`; updated public deployment checks are pending.
+- Updated public Chrome suite: **nine passing checks in 35.4 s**, on production deployment `dpl_8v5oCR5nE4rtkLxUWkoKNeHoXurV`, source commit `949d352`, READY and aliased to https://offcut-six.vercel.app/ . The earlier six-check result at `0dff9b0` is historical.
+- Final eleven-scene engineering video: **captured and checked**, 142.16 s (2:22), 1280 × 720, H.264/AAC. It uses illustrated input with actual OpenCV and pretrained SlimSAM. Full-grid framing assertions and real material exclusion/reallocation checks passed. Five final frames were visually inspected: learned masks, clean achievable artwork, source trace, calibrated plan and exclusion/recompute. The final MP4 and exact transcript are publicly served. The MP4 returned HTTP 200 with `video/mp4`, 2,765,649 bytes, and the same SHA-256 as the checked local file.
 
 Historical results are retained as history, not current release totals: 14 unit/three browser checks, then 56/five, then 57/six. The latest actual-vision artifact (`artifacts/vision-check.json`) reports four masks and 104 usable squares with an 8.0 s model stage on a synthetic engineering image. It used actual learned inference, not hardcoded masks, with no camera input or external image POST. That is not a real-paper segmentation-accuracy measurement.
 
@@ -20,7 +20,7 @@ Historical results are retained as history, not current release totals: 14 unit/
 | Calibration: 20 mm square and 4 mm spacing, no text overlap in screen/print layout | Print-plan browser regressions |
 | Real served MP4/transcript, metadata, muted/no autoplay, walkthrough/studio phone overflow | `tests/e2e/walkthrough.spec.ts` and responsive studio checks |
 
-The local browser suite covers all nine checks above. Updated public results will be recorded after deployment; they are not implied by local success.
+The full nine-check suite passed both locally (31.7 s) and publicly (35.4 s). The public `/walkthrough` loaded the real 142.16 s video and passed phone checks. Public MP4 SHA-256: `3d5a7a45087c1c9d7be4916c603a6faa8674def27f94edaf868daa5255bb408f`.
 
 ## Real-camera evaluation — not run
 

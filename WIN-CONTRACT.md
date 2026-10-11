@@ -16,16 +16,16 @@ The software portion is demonstrated on illustrated engineering input. The camer
 
 | Judging criterion | Claim and evidence | Current status |
 |---|---|---|
-| Technical Execution and Difficulty | Real SlimSAM/OpenCV, whole-mask containment, unique Hungarian assignment, source/export correspondence, recovery and scale checks | Measured in 59 unit tests (1.90 s) and nine local browser checks; updated public run pending; real-photo accuracy missing |
+| Technical Execution and Difficulty | Real SlimSAM/OpenCV, whole-mask containment, unique Hungarian assignment, source/export correspondence, recovery and scale checks | Measured in 59 unit tests (1.90 s), nine local browser checks (31.7 s) and nine public checks (35.4 s); real-photo accuracy missing |
 | Innovation and Creativity | Artwork is constrained by finite material; each cell traces to one unique source; exclusion changes the feasible inventory and output | Shown in software and the captured 2:22 narrated exclusion/recompute recording |
 | Use of the Image AI Theme | Learned segmentation converts irregular visual input into editable material regions; target upload is the explicit generation fallback | Actual pretrained inference shown; no generated-image claim |
 | Impact and Usefulness | A maker can follow numbered, calibrated plans using their own scraps | Plans exported and software checked; ruler-verified physical assembly and human usability proof missing |
-| Design, Presentation and Demo | Quiet paper studio, inspectable previews, captions/narration, public app and concise entry | Studio checked including mobile; corrected eleven-scene video captured and final gallery visually inspected; public walkthrough verification pending; YouTube/Devpost unverified |
+| Design, Presentation and Demo | Quiet paper studio, inspectable previews, captions/narration, public app and concise entry | Studio checked including mobile; final 2:22 video and inspected gallery publicly available; YouTube/Devpost unverified |
 
 No official weights have been verified. Equal-weight review means are estimates, not event scores.
 
 ## Completion priorities
 
-Publish the checked final recording/media, then rerun all nine public browser checks. Keep current evidence/attribution synchronized. Obtain supported real photographs and one measured assembly when Rishik supplies materials. Publish the required public YouTube URL and submit the honest entry before the protected time.
+The final recording/media is published on the website and all nine public browser checks pass. Keep evidence/attribution synchronized. Obtain supported real photographs and one measured assembly when Rishik supplies materials. Publish the required public YouTube URL and submit the honest entry before the protected time.
 
 Do not add accounts, marketplaces, custom training, arbitrary nesting or secondary creative pipelines. Do not let optional polish displace submission. Missing physical evidence lowers the usefulness claim; a polished illustration must remain labelled.

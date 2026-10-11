@@ -75,9 +75,9 @@ Source/license references:
 ## Verification checkpoint
 
 - 59 unit tests (1.90 s), type check and production build: passed on October 11.
-- Latest local release verification: all nine browser checks passed in 31.7 s. The prior public release passed six journeys.
-- Updated public nine-check run: pending deployment at this package checkpoint.
+- Latest local release verification: all nine browser checks passed in 31.7 s.
+- Updated public verification: all nine browser checks passed in 35.4 s.
 - Final video captured and visually checked: yes, 142.16 seconds / 2:22; a public YouTube upload remains pending.
-- Current /walkthrough release and public video link: deployment verification pending at this package checkpoint.
+- Current /walkthrough and public video: verified on READY deployment `dpl_8v5oCR5nE4rtkLxUWkoKNeHoXurV`, source `949d352`, alias `offcut-six.vercel.app`. The real 142.16 s MP4 returned HTTP 200 and matches the checked local file exactly.
 - Real camera inputs evaluated: zero. Physical assembly and human usability testing: unverified.
 - Devpost entry: not submitted or verified.

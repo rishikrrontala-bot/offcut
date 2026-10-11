@@ -2,7 +2,7 @@
 
 The recorder captures the actual studio using the built-in illustrated example and real browser-local OpenCV/SlimSAM. It does not substitute an illustration for camera or physical proof.
 
-The accepted final recording is **142.16 seconds (2:22), 1280 × 720, eleven scenes, H.264/AAC**. It includes asserted full-grid framing and actual material exclusion/recompute after visual review rejected the first 128.16 s clip’s off-screen allocation scene. The final five gallery frames were visually inspected. Local served-asset tests pass as part of all nine browser checks; updated public deployment checks are pending.
+The accepted final recording is **142.16 seconds (2:22), 1280 × 720, eleven scenes, H.264/AAC**. It includes asserted full-grid framing and actual material exclusion/recompute after visual review rejected the first 128.16 s clip’s off-screen allocation scene. The final five gallery frames were visually inspected. All nine browser checks pass locally (31.7 s) and publicly (35.4 s), including real served-asset/metadata and phone checks. The public MP4 is an exact byte match to the checked local file.
 
 ## Honest scope
 
@@ -34,7 +34,7 @@ Rehearsal checks real selectors and the complete flow. Recording requires a matc
 - `engineering-walkthrough.srt`: selectable subtitles generated from the final measured scene timeline.
 - `gallery/`: inspected frames from the final actual recording.
 
-The `/walkthrough` player provides controls, begins muted and does not autoplay. Browser tests fetch the real MP4 and transcript, load real metadata, and check phone overflow. Local success does not imply the deployed asset passed; record public results separately.
+The `/walkthrough` player provides controls, begins muted and does not autoplay. Browser tests fetch the real MP4 and transcript, load real metadata, and check phone overflow. The deployed asset was independently fetched and checked: HTTP 200, `video/mp4`, 2,765,649 bytes, SHA-256 `3d5a7a45087c1c9d7be4916c603a6faa8674def27f94edaf868daa5255bb408f`.
 
 ## Safety and provenance
 

@@ -11,7 +11,7 @@
 - Images stay browser-local; hosting/model-download providers receive ordinary connection metadata. IndexedDB data remains until cleared. Project JSON exports contain input images and should be shared deliberately.
 - Print at 100% actual size with fit-to-page disabled, then measure both sides of the **20 mm calibration square**. Cutting viewports overlap for context; every Source ID has one primary page and is cut once from the original paper. Printer, cutting and human assembly accuracy remain unmeasured.
 - Synthetic fixtures and the illustrated example verify engineering behavior, not real-photo accuracy. **Zero camera inputs have been evaluated; no physical assembly or human usability result is verified.**
-- The corrected 2:22 illustrated engineering recording is captured and its final frames were visually inspected. Final public deployment verification, PUBLIC YouTube publication and Devpost submission remain pending. A website-hosted video does not fulfill a specific YouTube requirement.
+- The corrected 2:22 illustrated engineering recording is captured and its final frames were visually inspected. The public web player and real media passed all nine public checks. PUBLIC YouTube publication and Devpost submission remain pending. A website-hosted video does not fulfill a specific YouTube requirement.
 - Opening-ceremony-specific constraints remain unverified. Continuation under the published Image AI theme was authorized; no unknown constraint is asserted as satisfied.
 
 Current software/media outcomes are in BUILD-STATUS.md and EVALUATION.md. Pending milestones are never counted as completed proof.

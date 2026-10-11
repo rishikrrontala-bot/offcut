@@ -1,37 +1,24 @@
-# OFFCUT — Demo Video Plan (2:30) — DRAFT, FOOTAGE NOT RECORDED
+# OFFCUT — remaining real-paper demo plan
 
-Rules: every spoken line is captioned on screen. No audio playback claims. Public YouTube visibility is required on submission. Nothing below marked REQUIRED HUMAN FOOTAGE may be presented as completed work until recorded.
+## Completed software recording
 
-## 0:00–0:20 — The real journey (raw, REQUIRED HUMAN FOOTAGE)
-Open with the actual scraps beside the completed physical collage (REQUIRED HUMAN FOOTAGE). Later show an uninterrupted 20–30-second real screen workflow: newly captured photo → corner confirmation → learned masks → review → allocation. Do not replace it with synthetic fixtures or a simulation.
-- Narration (captioned): "These leftover pieces are the starting point. OFFCUT finds a collage we can make from this exact paper."
+The accepted engineering demonstration is **2:22 (142.16 seconds)**, narrated and captioned, recorded from the actual live UI. It runs real OpenCV and pretrained SlimSAM on a clearly labelled illustration, then shows unique allocation, full-grid output, source tracing, actual scrap exclusion/recompute and the calibrated export. Its website player and real asset passed public checks at https://offcut-six.vercel.app/walkthrough . It is prepared for a required **Public** YouTube upload; that upload is not yet verified.
 
-## 0:20–0:45 — Photo to calibrated canvas
-Screen recording: corner confirmation on the A4 photo, OpenCV perspective warp to 1050×1485 (5 px/mm).
-- Caption: "Manual corner confirm → calibrated 5 px/mm canvas."
+The footage demonstrates an automated review-control click, not a human’s inspection. No camera photograph, ruler check or physical assembly appears. The persistent label states this clearly. Do not present this engineering clip as a completed real-paper validation.
 
-## 0:45–1:20 — Local segmentation and mandatory review
-Screen recording: SlimSAM (q8, WASM) masks appear locally in-browser; then the mandatory review step — brush + keyboard corrections on a mask. Show a before/after mask.
-- Caption: "SlimSAM runs locally. Every mask is human-reviewed — nothing is trusted blindly."
+## Human footage still needed
 
-## 1:20–1:50 — Allocation and inspection
-Screen recording: Hungarian CIELab allocation on the 6×6 or 8×8 grid; every background cell filled. Click a cell to reveal the exact source scrap via inverse homography. Then exclude one reviewed piece and show recomputation.
-- Caption: "Unique Hungarian allocation in CIELab. Real photo crops only — never recoloured. Click to see the source. Exclude → recompute."
+Use `HUMAN-PROOF.md` to capture a supported real-paper input and assemble one 6 × 6 result. Only use newly captured, genuine evidence. If this is supplied before submission, produce a two-to-three-minute judge-facing cut around these beats:
 
-## 1:50–2:15 — From screen to paper (REQUIRED HUMAN FOOTAGE)
-Download the 20 mm-calibrated, actual-size, numbered cut/assembly plan; then fresh footage of printing, holding a ruler against both sides of the 20 mm calibration square; finished source tiles are 12 mm, cutting one piece, and beginning physical assembly. Keep it honest — show only what has actually been assembled by recording time.
-- Caption: "Actual-size plans, ruler-verified, cut and numbered."
+| Time | What to show | Evidence boundary |
+|---|---|---|
+| 0:00–0:15 | Actual scraps beside the actual assembled collage; name the planning problem | Both must genuinely exist |
+| 0:15–0:50 | An uninterrupted real-photo upload, corner confirmation and learned masks | A new camera photo, not the illustration |
+| 0:50–1:10 | A person checks/corrects paper boundaries and confirms review | Show human review only if it happened |
+| 1:10–1:45 | Achievable crop collage, one source trace, scarce-paper exclusion and revised output | Preserve exact source identity; show an honest shortage if needed |
+| 1:45–2:15 | Download the actual plan, measure both sides of its 20 mm square, cut/assemble | Ruler and physical paper required |
+| 2:15–2:30 | Finished result, one honest limitation, Rishik’s credit and public links | Claim only observed results |
 
-## 2:15–2:30 — Close
-Screen recording of IndexedDB/project JSON save, link to https://github.com/rishikrrontala-bot/offcut (live app: https://offcut-six.vercel.app).
-- Caption: "Built solo by Rishik Rontala for Banana Hacks 2026. SlimSAM + Transformers.js + OpenCV. Your photographs and project stay in your browser."
+Caption every spoken line. Keep audio muted during automated checks; inspect output streams/volume rather than playing through speakers. Verify the YouTube upload is **Public**, accessible logged out and between two and three minutes. Website hosting alone does not fulfill the YouTube requirement.
 
-## Pre-flight checklist
-- [ ] Record all REQUIRED HUMAN FOOTAGE (paper photo, ruler measurement, assembly)
-- [ ] Captions present for every spoken line
-- [ ] No claims of accuracy, waste savings, or completed assembly beyond recorded evidence
-- [ ] Public YouTube visibility enabled at submission
-
-## Root review corrections
-
-The reviewed plan has no invented personal backstory. A4 corners belong to the sheet, not the scraps. Calibration is 20 mm; cut tiles are 12 mm. The raw screen workflow must use a newly captured real photograph. Physical footage is still required and no video has been recorded.
+If human evidence does not arrive, submit the strongest honest software entry on time with the illustrated clip and clear missing-proof disclosure. Do not generate an assembly image, replace the input with an unrelated photograph or claim the evaluation was done.

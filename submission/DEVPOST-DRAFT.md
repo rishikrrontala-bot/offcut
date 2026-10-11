@@ -16,9 +16,9 @@ Next.js, React and Tailwind create a quiet paper-and-ink studio. OpenCV supplies
 I considered generated targets, but chose the explicit target-upload fallback for the intended student audience. Designed patterns are labelled templates, not generated images. Image AI remains essential: it turns irregular scraps into an editable material inventory.
 
 ## Challenges, results and what I learned
-Keeping physical scale and source identity consistent through segmentation, allocation, restoration and export was the main engineering challenge. The build passes 59 unit tests and nine local browser checks, plus type checking and production compilation. Its captioned, narrated 2:22 engineering recording shows real pretrained inference, unique allocation, source tracing and material removal/recompute on a clearly labelled illustration, with no hardcoded masks.
+Keeping physical scale and source identity consistent through segmentation, allocation, restoration and export was the main engineering challenge. The build passes 59 unit tests and nine public browser checks, plus type checking and production compilation. Its captioned, narrated 2:22 engineering recording shows real pretrained inference, unique allocation, source tracing and material removal/recompute on a clearly labelled illustration, with no hardcoded masks.
 
 I learned that a convincing preview is only half the problem: trustworthy creative tools must preserve the path back to the material. Ten real-camera evaluations and one ruler-checked physical assembly remain unverified. No waste-reduction or physical-success claim is made. Those measurements are the next validation step.
 
 ## Credits
-Built by Rishik Rontala. OpenCV, Transformers.js, Xenova’s SlimSAM weights, SlimSAM/Meta SAM, Next.js, React, Tailwind, Vitest, Playwright and Fontsource support the build. Codex and Featherless GLM models assisted development and review, with native Codex completing final improvements after broader model authorization. No event-specific model training was performed.
+Built by Rishik Rontala. OpenCV, Transformers.js, Xenova’s SlimSAM weights, SlimSAM/Meta SAM, Next.js, React, Tailwind, Vitest, Playwright and Fontsource support the build. Codex and Featherless GLM models assisted development and review. No event-specific model training was performed.
