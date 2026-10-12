@@ -18,10 +18,10 @@ Public app: https://offcut-six.vercel.app/ . Public source: https://github.com/r
 - Ruler-verified print/cut/assembly and photographed result: **unverified**.
 - Human usability/self-test result: **not performed**.
 - YouTube URL supplied by Rishik: https://youtu.be/ekFjI1mhMRA. The local accepted video is 2:22; uploaded-version duration, PUBLIC visibility and logged-out playback are **not independently verified**.
-- Devpost entry, at most 500 words: **prepared, not submitted or verified**.
+- Devpost entry, at most 500 words: **SUBMITTED, 5/5 steps done**, verified in Safari around 12:08 p.m. EDT on October 11, 2026: https://devpost.com/software/offcut-g5c2bo .
 - Opening-ceremony challenge constraint: **unverified**; Rishik instructed continuation under the published Image AI theme.
 
-The paper instructions are in `submission/HUMAN-PROOF.md`. The entry text and exact fields are in `submission/DEVPOST-DRAFT.md` and `submission/DEVPOST-READY.md`. Automated browser account access was rejected by an administrative security check; the Devpost connector returned an internal error. Manual account publication/submission remains necessary. Neither access restriction authorizes a bypass.
+The paper instructions are in `submission/HUMAN-PROOF.md`. The entry text and exact fields are in `submission/DEVPOST-DRAFT.md` and `submission/DEVPOST-READY.md`. The Devpost connector failed, but later authorized native Safari control saved the materials and verified the submitted state. No access restriction was bypassed. Full logged-out YouTube playback remains unverified.
 
 ## Authorship and controls
 
@@ -30,3 +30,11 @@ Built solo by Rishik Rontala. Git author identity remains `Rishik Rontala <29797
 Development assistance includes Codex and Featherless GLM-5.3-Flash/GLM-5.3/GLM-5.2. GLM supplied reviewed export, pattern, mask refinement, material accounting, keyboard prompts, example/print refinements, recorder retries and reviews. Codex implemented the original engine and, after the user permitted any suitable model, the final responsive-header/recorder improvements and release integration. Incomplete outputs were rejected. Featherless is not OFFCUT’s segmentation or image generator. The $10 Featherless cap includes previous usage and reservations; no purchases, top-ups or plan changes are authorized. Private credentials, ledger and worker records remain outside the source folder.
 
 The repository was checked for an existing empty event repository before creation. Event-time work is fresh. APP-BRIEF.md retains the original brief and implementation standard verbatim. The one-time resume automation is paused after running. Current evidence is recorded here and in EVALUATION.md; no pending milestone is counted as complete.
+
+## Historical draft checkpoint — October 11, before submission
+
+Native computer control in the user’s open Safari session saved the OFFCUT story, app/source/YouTube links and two captioned gallery images, then attached the required 5.4 MB source/submission ZIP. Devpost showed **DRAFT, 4/5 steps done** at `https://devpost.com/software/offcut-g5c2bo`. Three final branding assets are saved under `submission/brand/`. The Mac locked during the cover-image picker; the thumbnail and final review require manual unlock. No final submission is claimed. This observed Safari progress supersedes the earlier assumption that all online draft entry required manual copying; the MCP connector remains unavailable.
+
+## Submission confirmation — October 11, around 12:08 p.m. EDT
+
+Native Safari inspection showed **SUBMITTED, 5/5 steps done** and the public project’s **SUBMITTED TO Banana Hacks** listing. The final 3:2 logo cover, five screenshots with correct saved captions, app/source/YouTube links and `offcut-submission.zip` were present. The final submission click was not performed by the assistant; the state was observed after user interaction. Physical-paper evaluation remains unverified. This confirmation supersedes the historical 4/5 draft checkpoint above.

@@ -50,10 +50,14 @@ Latest unit run: **59 passing tests in 1.90 s**; production build and type check
 
 The final **2:22** narrated/captioned engineering recording is captured: 142.16 s, 1280 × 720, eleven scenes, H.264 video and AAC narration. It uses illustrated input with real OpenCV/SlimSAM and shows unique allocation, source tracing, actual removal/recompute and the exported plan. Full-grid framing was visually checked. The final media files are publicly served under `public/demo/`; the [walkthrough](https://offcut-six.vercel.app/walkthrough), metadata, transcript and phone layout passed public browser checks. The deployed MP4 matches the local file byte-for-byte.
 
-**No real camera photographs have been evaluated, no physical assembly is verified, and no human usability result is claimed.** The illustrated example and synthetic fixtures are engineering evidence, not real-world accuracy measurements. YouTube URL supplied by Rishik: https://youtu.be/ekFjI1mhMRA; public playback and Devpost submission remain unverified. Current outcomes live in EVALUATION.md and BUILD-STATUS.md; the preserved APP-BRIEF.md is the original brief/event record.
+**No real camera photographs have been evaluated, no physical assembly is verified, and no human usability result is claimed.** The illustrated example and synthetic fixtures are engineering evidence, not real-world accuracy measurements. YouTube URL supplied by Rishik: https://youtu.be/ekFjI1mhMRA; full logged-out YouTube playback remains unverified. The [Devpost entry](https://devpost.com/software/offcut-g5c2bo) was verified as SUBMITTED, 5/5 steps done, on October 11 around 12:08 p.m. EDT. Current outcomes live in EVALUATION.md and BUILD-STATUS.md; the preserved APP-BRIEF.md is the original brief/event record.
 
 ## Credits and submission
 
 Codex and user-authorized Featherless GLM-5.3-Flash, GLM-5.3 and GLM-5.2 assisted implementation and review. The user later permitted any suitable model; final interface, recorder and release work also uses native Codex assistance. Featherless supports development, not the app’s image inference. No model was trained for this event. Private credentials and billing/worker records stay outside this repository; Featherless spending remains capped at $10 including previous usage/reservations, with no purchases or top-ups.
 
 Read DESIGN.md, LIMITATIONS.md, THIRD-PARTY.md and WIN-CONTRACT.md. The copy-ready write-up and exact fields are in `submission/DEVPOST-DRAFT.md` and `submission/DEVPOST-READY.md`; `submission/HUMAN-PROOF.md` explains the remaining paper test. Ceremony-specific constraints remain unverified; Rishik authorized continuation under the published Image AI theme.
+
+## OFFCUT identity
+
+The new [wordmark](submission/brand/offcut-wordmark.png), [clean icon](submission/brand/offcut-icon-clean.png) and [3:2 Devpost cover](submission/brand/offcut-devpost-cover.png) use the paper/ink/terra design direction. The detached square represents a leftover finding a new place. These branding assets were created using built-in image generation; they are not segmentation outputs or physical proof.

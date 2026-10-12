@@ -1,10 +1,14 @@
 # OFFCUT — Devpost entry package
 
-**Status: copy-ready materials; not submitted.** Prepared October 11, 2026. Protect **9:59 p.m. EDT** for submission; the conservative final cutoff is **11:59 p.m. EDT**. Publishing a website or saving a Devpost draft does not confirm entry submission.
+**Status: SUBMITTED, 5/5 steps done.** Native Safari inspection on October 11, 2026 around 12:08 p.m. EDT verified the completed Banana Hacks entry. The assistant did not press the final Submit button; the submitted state was observed after user interaction.
+
+Project: https://devpost.com/software/offcut-g5c2bo . The saved entry includes the story, app/source/YouTube links, five captioned gallery images, the 3:2 OFFCUT logo cover and the required `offcut-submission.zip`. The ZIP already attached to Devpost is the original submitted snapshot; later repository documentation and branding updates do not replace it.
+
+`DEVPOST-DRAFT.md` is an attributed copy-ready revision, not an exact transcript of the final online story. User edits to the online entry are preserved.
 
 ## Paste these fields
 
-The complete upload bundle is `../artifacts/devpost-ready/offcut-devpost-upload.zip`. It contains only the accepted final video, matching subtitles/transcript, these entry files and the five inspected gallery images.
+The source and submission ZIP attached to Devpost is `../artifacts/devpost-ready/offcut-submission.zip`. The copy-ready media bundle is `../artifacts/devpost-ready/offcut-devpost-upload.zip`. The final logo bundle is `../artifacts/devpost-ready/offcut-logos.zip`. It contains only the accepted final video, matching subtitles/transcript, these entry files and the five inspected gallery images.
 
 | Field | Value |
 |---|---|
@@ -29,13 +33,13 @@ All five final images below were visually inspected. They come from the accepted
 
 | Image | Paste-ready caption |
 |---|---|
-| `gallery/02-unique-material-collage.png` | OFFCUT’s achievable 6 × 6 collage uses thirty-six unique crops from the illustrated input. Real OpenCV/SlimSAM processed the image; no camera photograph or physical assembly is claimed. |
-| `gallery/01-real-segmentation-illustration.png` | Actual pretrained segmentation finds four illustrated scraps and their usable square inventory. Real-camera accuracy remains unmeasured. |
-| `gallery/03-source-trace.png` | Selecting an artwork cell highlights its exact source. Every output piece is used once; this is an illustrated engineering example. |
-| `gallery/05-scarce-paper-recompute.png` | Excluding the red scrap reduces inventory and changes the achievable collage to surviving paper colours. The app reallocates unique source pieces instead of inventing material. |
-| `gallery/04-calibrated-plan.png` | The exported plan starts with a 20 mm actual-size calibration check and keeps its illustrated-input disclaimer. Printer accuracy and physical cutting remain unverified. |
+| `gallery/02-unique-material-collage.png` | 36 unique source crops form the achievable collage. Illustrated input; physical assembly unverified. |
+| `gallery/01-real-segmentation-illustration.png` | Real SlimSAM detects four scraps and usable inventory. Illustrated input; camera accuracy unmeasured. |
+| `gallery/03-source-trace.png` | Select a collage cell to locate its original source. Every crop is used once. Illustrated engineering input. |
+| `gallery/05-scarce-paper-recompute.png` | Removing red paper reduces inventory and recomputes the collage from surviving scraps. Illustrated engineering input. |
+| `gallery/04-calibrated-plan.png` | Numbered cutting and assembly plans include a 20 mm calibration check. Illustrated input; physical cutting unverified. |
 
-Use the collage as the cover, then detection, tracing, removal/recompute and the plan. Add camera/assembly images only after genuine proof exists; do not present a future physical result as completed work.
+The saved entry uses the OFFCUT branding cover, followed by detection, collage, tracing, the plan and removal/recompute gallery images. Add camera/assembly images only after genuine proof exists; do not present a future physical result as completed work.
 
 ## YouTube demo
 
@@ -56,7 +60,7 @@ Upload `engineering-walkthrough.srt` as the English subtitle track; it matches t
 4. Complete all required eligibility and attribution fields truthfully. The app uses local pretrained segmentation; Featherless supplied development assistance, not image inference for users.
 5. Submit before the protected time. Save the confirmation screen and project URL. Verify the entry shows **submitted**, not draft, and its public links work without login.
 
-**Access limitation:** automated browser access to YouTube and Devpost was rejected by the browser’s administrative security check; the Devpost connector returned an internal error. These actions require your own browser session. No attempt to bypass that restriction is authorized here, and no independent verification of YouTube visibility or Devpost submission is claimed.
+**Access status:** native computer control verified the saved cover, five captions, project links, required ZIP and SUBMITTED 5/5 status. The YouTube embed displayed the video title and thumbnail; full logged-out playback and Public visibility were not independently verified. Earlier Mac locks and connector failures did not prevent completion; no security restriction was bypassed.
 
 ## Resources and attribution
 
@@ -80,4 +84,5 @@ Source/license references:
 - Final video captured and visually checked: yes, 142.16 seconds / 2:22; the YouTube link has been supplied, with Public visibility and logged-out playback still unverified.
 - Current /walkthrough and public video: verified on READY deployment `dpl_8v5oCR5nE4rtkLxUWkoKNeHoXurV`, source `949d352`, alias `offcut-six.vercel.app`. The real 142.16 s MP4 returned HTTP 200 and matches the checked local file exactly.
 - Real camera inputs evaluated: zero. Physical assembly and human usability testing: unverified.
-- Devpost entry: not submitted or verified.
+- Devpost entry: SUBMITTED, 5/5 steps done, verified through native Safari inspection around 12:08 p.m. EDT on October 11.
+- Branding: final wordmark, clean icon and 3:2 cover saved in `brand/`; cover upload and saved display verified.

@@ -11,3 +11,5 @@ artifacts/
 .impeccable/
 public/vendor/opencv.js
 .vercel
+
+.DS_Store
